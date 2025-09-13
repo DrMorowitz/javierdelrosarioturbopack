@@ -1,5 +1,5 @@
 import React from 'react';
-import { MedicalNavbar } from '@/components/ui/navbar';
+import Header from '@/components/Header';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -165,7 +165,7 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen">
-      <MedicalNavbar />
+      <Header />
       <main>
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-br from-primary/10 to-primary/5">
