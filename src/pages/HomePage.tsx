@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '@/components/Header';
+import { MedicalNavbar } from '@/components/ui/navbar';
 import Hero from '@/components/Hero';
 import StatsSection from '@/components/StatsSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -10,7 +10,7 @@ import ContactForm from '@/components/ContactForm';
 const HomePage = () => {
   return (
     <div className="min-h-screen">
-      <Header />
+      <MedicalNavbar />
       <main>
         <Hero />
         <StatsSection />

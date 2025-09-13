@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '@/components/Header';
+import { MedicalNavbar } from '@/components/ui/navbar';
 import ContactForm from '@/components/ContactForm';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -103,7 +103,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <MedicalNavbar />
       <main>
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-br from-primary/10 to-primary/5">
