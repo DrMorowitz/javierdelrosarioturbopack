@@ -1,0 +1,25 @@
+{
+  "name": "Dr. Javier del Rosario - Urólogo Especialista",
+  "short_name": "Dr. del Rosario",
+  "description": "Urólogo especialista con 25 años de experiencia en Panamá",
+  "theme_color": "#2563EB",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dp3gvxyft/image/upload/c_scale,w_192,h_192,f_auto,q_auto/favicon/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "https://res.cloudinary.com/dp3gvxyft/image/upload/c_scale,w_512,h_512,f_auto,q_auto/favicon/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

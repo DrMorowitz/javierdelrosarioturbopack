@@ -25,8 +25,7 @@ const Header = () => {
           <Link to="/" className="flex items-center">
             <CloudinaryLogo 
               alt="Dr. Javier del Rosario - Urólogo" 
-              className="h-10 w-auto max-h-10"
-              filename="logo"
+              className="responsive-logo max-h-12"
             />
           </Link>
 

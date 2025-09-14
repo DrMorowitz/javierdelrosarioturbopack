@@ -22,10 +22,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-4">
               <CloudinaryLogo 
                 alt="Dr. Javier del Rosario - Urólogo" 
-                className="h-12 w-auto"
-                filename="logo"
-                width={120}
-                height={48}
+                className="h-10 w-auto md:h-12"
               />
               <span className="font-bold text-xl">Dr. Javier del Rosario</span>
             </div>

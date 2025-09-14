@@ -147,6 +147,45 @@
     will-change: transform;
   }
 
+  /* Responsive Logo Optimization */
+  .responsive-logo {
+    @apply h-8 w-auto; /* Mobile base */
+  }
+
+  /* Tablet logo sizing */
+  @screen md {
+    .responsive-logo {
+      @apply h-10;
+    }
+  }
+
+  /* Desktop logo sizing */
+  @screen lg {
+    .responsive-logo {
+      @apply h-12;
+    }
+  }
+
+  /* High-DPI display optimizations */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-video {
+      /* Enhanced quality for retina displays */
+      image-rendering: -webkit-optimize-contrast;
+    }
+  }
+
+  /* Mobile-specific video optimizations */
+  @media (max-width: 768px) {
+    .hero-video {
+      /* Reduce quality on mobile to improve performance */
+      transform: translateZ(0) scale(1.01);
+    }
+    
+    .hero-section {
+      @apply min-h-[100vh]; /* Better mobile viewport handling */
+    }
+  }
+
   /* Respect user's motion preferences */
   @media (prefers-reduced-motion: reduce) {
     .hero-video {

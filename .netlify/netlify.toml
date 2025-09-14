@@ -1,0 +1,72 @@
+headersOrigin = "config"
+redirectsOrigin = "config"
+plugins = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/humbertomorisbeckford/Documents/dr-del-rosario-website/dr-j-urology-care/dist"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build"
+
+[build.environment]
+NODE_VERSION = "22"
+NPM_VERSION = "10.9.2"
+VITE_CLOUDINARY_CLOUD_NAME = "dp3gvxyft"
+VITE_CLOUDINARY_LOGO_FOLDER = "logos"
+VITE_CLOUDINARY_VIDEO_FOLDER = "video"
+VITE_CLOUDINARY_FAVICON_FOLDER = "favicon"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[headers]]
+for = "/assets/*"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.js"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.css"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+X-Content-Type-Options = "nosniff"
+Content-Security-Policy = "default-src 'self' https://res.cloudinary.com https://cloudinary.com 'unsafe-inline' 'unsafe-eval' data: blob:; img-src 'self' https://res.cloudinary.com data: blob:; video-src 'self' https://res.cloudinary.com blob:; connect-src 'self' https://api.cloudinary.com;"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

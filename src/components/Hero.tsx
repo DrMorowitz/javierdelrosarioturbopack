@@ -12,22 +12,35 @@ const Hero = () => {
     window.open(`https://wa.me/50760000000?text=${message}`, '_blank');
   };
 
-  // Get Cloudinary video URL or fallback to local
-  const getVideoSrc = () => {
+  // Get optimized Cloudinary video URLs
+  const getVideoUrls = () => {
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
     if (cloudName) {
       try {
-        return getHeroVideoUrl('hero-video');
+        const baseUrl = `https://res.cloudinary.com/${cloudName}/video/upload`;
+        return {
+          mp4: `${baseUrl}/f_mp4,q_auto:good,w_1920,c_limit/video/hero-video`,
+          webm: `${baseUrl}/f_webm,q_auto:good,w_1920,c_limit/video/hero-video`,
+          mobileMp4: `${baseUrl}/f_mp4,q_auto:good,w_768,c_limit/video/hero-video`,
+          mobileWebm: `${baseUrl}/f_webm,q_auto:good,w_768,c_limit/video/hero-video`
+        };
       } catch (error) {
-        console.warn('Cloudinary video failed to load, using fallback:', error);
+        console.warn('Cloudinary video URLs failed to generate, using fallback:', error);
       }
     }
-    return '/videos/hero-video.mp4';
+    return {
+      mp4: '/videos/hero-video.mp4',
+      webm: '/videos/hero-video.webm',
+      mobileMp4: '/videos/hero-video.mp4',
+      mobileWebm: '/videos/hero-video.webm'
+    };
   };
+
+  const videoUrls = getVideoUrls();
 
   return (
     <section className="hero-section">
-      {/* Video Background */}
+      {/* Video Background - Responsive Cloudinary Implementation */}
       <div className="hero-video-bg">
         <video
           className="hero-video"
@@ -38,13 +51,38 @@ const Hero = () => {
           preload="metadata"
           aria-hidden="true"
           onError={() => {
-            console.warn('Cloudinary video failed to load, video element will show fallback');
+            console.warn('Cloudinary video failed to load, using fallback');
           }}
         >
-          <source src={getVideoSrc()} type="video/mp4" />
+          {/* Desktop optimized sources */}
+          <source
+            src={videoUrls.webm}
+            type="video/webm"
+            media="(min-width: 1024px)"
+          />
+          <source
+            src={videoUrls.mp4}
+            type="video/mp4"
+            media="(min-width: 1024px)"
+          />
+          
+          {/* Mobile optimized sources */}
+          <source
+            src={videoUrls.mobileWebm}
+            type="video/webm"
+            media="(max-width: 1023px)"
+          />
+          <source
+            src={videoUrls.mobileMp4}
+            type="video/mp4"
+            media="(max-width: 1023px)"
+          />
+          
+          {/* Fallback sources */}
           <source src="/videos/hero-video.webm" type="video/webm" />
           <source src="/videos/hero-video.mp4" type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
+          
+          {/* Ultimate fallback for browsers that don't support video */}
           <div className="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
         </video>
       </div>
