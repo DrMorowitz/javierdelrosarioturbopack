@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MessageCircle } from 'lucide-react';
+import { getHeroVideoUrl } from '@/config/cloudinary';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -11,13 +12,41 @@ const Hero = () => {
     window.open(`https://wa.me/50760000000?text=${message}`, '_blank');
   };
 
+  // Get Cloudinary video URL or fallback to local
+  const getVideoSrc = () => {
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+    if (cloudName) {
+      try {
+        return getHeroVideoUrl('hero-video');
+      } catch (error) {
+        console.warn('Cloudinary video failed to load, using fallback:', error);
+      }
+    }
+    return '/videos/hero-video.mp4';
+  };
+
   return (
     <section className="hero-section">
-      {/* Video Background Placeholder */}
+      {/* Video Background */}
       <div className="hero-video-bg">
-        <div className="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-          {/* This would be replaced with actual video */}
-        </div>
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          onError={() => {
+            console.warn('Cloudinary video failed to load, video element will show fallback');
+          }}
+        >
+          <source src={getVideoSrc()} type="video/mp4" />
+          <source src="/videos/hero-video.webm" type="video/webm" />
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+          <div className="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
+        </video>
       </div>
       
       {/* Overlay */}

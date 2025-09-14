@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Stethoscope, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
+import CloudinaryLogo from './CloudinaryLogo';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -18,10 +19,14 @@ const Footer = () => {
           
           {/* Logo and Description */}
           <div className="md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
-                <Stethoscope className="h-6 w-6 text-primary-foreground" />
-              </div>
+            <div className="flex items-center space-x-3 mb-4">
+              <CloudinaryLogo 
+                alt="Dr. Javier del Rosario - Urólogo" 
+                className="h-12 w-auto"
+                filename="logo"
+                width={120}
+                height={48}
+              />
               <span className="font-bold text-xl">Dr. Javier del Rosario</span>
             </div>
             <p className="text-background/80 leading-relaxed mb-6 max-w-md">

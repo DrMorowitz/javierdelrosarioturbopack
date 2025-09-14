@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Stethoscope, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
+import CloudinaryLogo from './CloudinaryLogo';
 
 const Header = () => {
   const location = useLocation();
@@ -21,13 +22,12 @@ const Header = () => {
       <div className="section-container">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
-              <Stethoscope className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-xl text-foreground hidden sm:block">
-              Dr. Javier del Rosario
-            </span>
+          <Link to="/" className="flex items-center">
+            <CloudinaryLogo 
+              alt="Dr. Javier del Rosario - Urólogo" 
+              className="h-10 w-auto max-h-10"
+              filename="logo"
+            />
           </Link>
 
           {/* Navigation */}
