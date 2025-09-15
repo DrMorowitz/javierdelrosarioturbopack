@@ -159,35 +159,26 @@ const Header = () => {
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}>
             <div className="flex flex-col h-full">
-              {/* Mobile Menu Header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white flex-shrink-0">
-                <div className="flex items-center">
-                  <picture>
-                    {/* Mobile */}
-                    <source
-                      media="(max-width: 767px)"
-                      srcSet="/logo-mobile.png 1x, /logo-mobile-2x.png 2x"
-                    />
-                    {/* Fallback */}
-                    <img 
-                      src="/logo-mobile.png"
-                      alt="Dr. Javier del Rosario - Urólogo"
-                      className="h-8 w-auto"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = '/logo.png';
-                      }}
-                    />
-                  </picture>
+              {/* Mobile Menu Header - Clean */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0">
+                <div className="w-8 h-8">
+                  <img 
+                    src="/logo-mobile.png"
+                    alt=""
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/logo.png';
+                    }}
+                  />
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
+                <button
                   onClick={closeMobileMenu}
-                  className="p-1 hover:bg-gray-100"
+                  className="p-2 hover:bg-gray-100 rounded-md"
+                  aria-label="Close menu"
                 >
-                  <X className="h-6 w-6" />
-                </Button>
+                  <X className="h-6 w-6 text-gray-600" />
+                </button>
               </div>
 
               {/* Mobile Navigation Links */}
