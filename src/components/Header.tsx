@@ -135,7 +135,7 @@ const Header = () => {
           
           {/* Mobile Menu Container */}
           <div className="fixed top-0 right-0 h-screen w-80 max-w-[85vw] bg-white shadow-2xl flex flex-col">
-            {/* Header - Logo Only */}
+            {/* Header - Logo Only - Updated */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
               <img 
                 src="/logo-mobile.png"
