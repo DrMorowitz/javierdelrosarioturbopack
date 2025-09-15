@@ -40,7 +40,7 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Force cache bust for deployment
+  // Force cache bust for deployment - v2
 
 
   return (
