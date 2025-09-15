@@ -124,88 +124,86 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Lateral Menu - Clean Rebuild */}
+      {/* Mobile Menu - Complete Rebuild */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/50"
+            className="absolute inset-0 bg-black/50"
             onClick={closeMobileMenu}
           />
           
-          {/* Slide-out Menu */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white shadow-2xl">
-            <div className="flex flex-col h-full">
-              {/* Mobile Menu Header - Logo Only */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <img 
-                  src="/logo-mobile.png"
-                  alt="Dr. Javier del Rosario"
-                  className="h-10 w-auto"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = '/logo.png';
-                  }}
-                />
-                <button
-                  onClick={closeMobileMenu}
-                  className="p-2 hover:bg-gray-100 rounded-md transition-colors"
-                  aria-label="Close menu"
-                >
-                  <X className="h-6 w-6 text-gray-600" />
-                </button>
-              </div>
-
-              {/* Mobile Navigation - Clean Pages Only */}
-              <nav className="flex-1 p-6">
-                <div className="space-y-1">
-                  <Link
-                    to="/"
-                    onClick={closeMobileMenu}
-                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
-                      isActiveRoute('/') 
-                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
-                    }`}
-                  >
-                    Inicio
-                  </Link>
-                  <Link
-                    to="/sobre-mi"
-                    onClick={closeMobileMenu}
-                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
-                      isActiveRoute('/sobre-mi') 
-                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
-                    }`}
-                  >
-                    Sobre Mí
-                  </Link>
-                  <Link
-                    to="/servicios"
-                    onClick={closeMobileMenu}
-                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
-                      isActiveRoute('/servicios') 
-                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
-                    }`}
-                  >
-                    Servicios
-                  </Link>
-                  <Link
-                    to="/contacto"
-                    onClick={closeMobileMenu}
-                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
-                      isActiveRoute('/contacto') 
-                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
-                    }`}
-                  >
-                    Contacto
-                  </Link>
-                </div>
-              </nav>
+          {/* Mobile Menu Container */}
+          <div className="absolute top-0 right-0 h-screen w-80 max-w-[85vw] bg-white shadow-2xl">
+            {/* Header - Logo Only */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <img 
+                src="/logo-mobile.png"
+                alt="Dr. Javier del Rosario"
+                className="h-8 w-auto"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/logo.png';
+                }}
+              />
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 hover:bg-gray-100 rounded-md"
+                aria-label="Cerrar menú"
+              >
+                <X className="h-5 w-5 text-gray-600" />
+              </button>
             </div>
+
+            {/* Navigation Menu */}
+            <nav className="p-4">
+              <div className="space-y-2">
+                <Link
+                  to="/"
+                  onClick={closeMobileMenu}
+                  className={`block px-3 py-3 text-base font-medium rounded-md transition-colors ${
+                    isActiveRoute('/') 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  Inicio
+                </Link>
+                <Link
+                  to="/sobre-mi"
+                  onClick={closeMobileMenu}
+                  className={`block px-3 py-3 text-base font-medium rounded-md transition-colors ${
+                    isActiveRoute('/sobre-mi') 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  Sobre Mí
+                </Link>
+                <Link
+                  to="/servicios"
+                  onClick={closeMobileMenu}
+                  className={`block px-3 py-3 text-base font-medium rounded-md transition-colors ${
+                    isActiveRoute('/servicios') 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  Servicios
+                </Link>
+                <Link
+                  to="/contacto"
+                  onClick={closeMobileMenu}
+                  className={`block px-3 py-3 text-base font-medium rounded-md transition-colors ${
+                    isActiveRoute('/contacto') 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  Contacto
+                </Link>
+              </div>
+            </nav>
           </div>
         </div>
       )}
