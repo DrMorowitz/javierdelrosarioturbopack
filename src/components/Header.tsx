@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Globe, Menu, X, MessageCircle } from 'lucide-react';
+import { Globe, Menu, X } from 'lucide-react';
 import CloudinaryLogo from './CloudinaryLogo';
 
 const Header = () => {
@@ -40,10 +40,6 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
-  const handleWhatsApp = () => {
-    const message = encodeURIComponent('Hola Dr. del Rosario, me gustaría agendar una consulta.');
-    window.open(`https://wa.me/50760000000?text=${message}`, '_blank');
-  };
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
