@@ -134,9 +134,9 @@ const Header = () => {
           />
           
           {/* Mobile Menu Container */}
-          <div className="absolute top-0 right-0 h-screen w-80 max-w-[85vw] bg-white shadow-2xl">
+          <div className="fixed top-0 right-0 h-screen w-80 max-w-[85vw] bg-white shadow-2xl flex flex-col">
             {/* Header - Logo Only */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
               <img 
                 src="/logo-mobile.png"
                 alt="Dr. Javier del Rosario"
@@ -155,8 +155,8 @@ const Header = () => {
               </button>
             </div>
 
-            {/* Navigation Menu */}
-            <nav className="p-4">
+            {/* Navigation Menu - Takes remaining space */}
+            <nav className="flex-1 p-4 overflow-y-auto">
               <div className="space-y-2">
                 <Link
                   to="/"
