@@ -181,14 +181,14 @@ const Header = () => {
                 </button>
               </div>
 
-              {/* Mobile Navigation Links */}
+              {/* Mobile Navigation Links - Takes remaining space */}
               <div className="flex-1 bg-white overflow-y-auto">
-                <nav className="p-6 space-y-4">
+                <nav className="flex flex-col p-6 space-y-6 h-full">
                   <Link
                     to="/"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-3 block ${
-                      isActiveRoute('/') ? 'text-blue-600 border-l-4 border-blue-600 pl-4 -ml-6 pl-2' : 'text-gray-900 hover:text-blue-600'
+                    className={`text-lg font-medium transition-colors py-2 ${
+                      isActiveRoute('/') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
                     }`}
                   >
                     {t('nav.home')}
@@ -196,8 +196,8 @@ const Header = () => {
                   <Link
                     to="/sobre-mi"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-3 block ${
-                      isActiveRoute('/sobre-mi') ? 'text-blue-600 border-l-4 border-blue-600 pl-4 -ml-6 pl-2' : 'text-gray-900 hover:text-blue-600'
+                    className={`text-lg font-medium transition-colors py-2 ${
+                      isActiveRoute('/sobre-mi') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
                     }`}
                   >
                     {t('nav.about')}
@@ -205,8 +205,8 @@ const Header = () => {
                   <Link
                     to="/servicios"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-3 block ${
-                      isActiveRoute('/servicios') ? 'text-blue-600 border-l-4 border-blue-600 pl-4 -ml-6 pl-2' : 'text-gray-900 hover:text-blue-600'
+                    className={`text-lg font-medium transition-colors py-2 ${
+                      isActiveRoute('/servicios') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
                     }`}
                   >
                     {t('nav.services')}
@@ -214,8 +214,8 @@ const Header = () => {
                   <Link
                     to="/contacto"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-3 block ${
-                      isActiveRoute('/contacto') ? 'text-blue-600 border-l-4 border-blue-600 pl-4 -ml-6 pl-2' : 'text-gray-900 hover:text-blue-600'
+                    className={`text-lg font-medium transition-colors py-2 ${
+                      isActiveRoute('/contacto') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
                     }`}
                   >
                     {t('nav.contact')}
@@ -224,7 +224,7 @@ const Header = () => {
               </div>
 
               {/* Mobile Menu Actions - Fixed at Bottom */}
-              <div className="flex-shrink-0 p-4 space-y-3 bg-white border-t border-gray-200">
+              <div className="flex-shrink-0 p-4 bg-white border-t border-gray-200">
                 {/* Language Toggle */}
                 <Button
                   variant="outline"
@@ -236,18 +236,6 @@ const Header = () => {
                 >
                   <Globe className="h-4 w-4" />
                   <span>{language === 'es' ? 'English' : 'Español'}</span>
-                </Button>
-
-                {/* WhatsApp Button */}
-                <Button
-                  onClick={() => {
-                    handleWhatsApp();
-                    closeMobileMenu();
-                  }}
-                  className="w-full btn-whatsapp flex items-center justify-center space-x-2 h-11"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  <span>WhatsApp</span>
                 </Button>
               </div>
             </div>
