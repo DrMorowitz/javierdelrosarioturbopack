@@ -155,18 +155,28 @@ const Header = () => {
           />
           
           {/* Slide-out Menu */}
-          <div className={`fixed top-0 right-0 h-full w-80 max-w-sm bg-white border-l border-gray-200 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
+          <div className={`fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white border-l border-gray-200 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}>
             
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
               <div className="flex items-center">
                 <picture>
+                  {/* Mobile */}
+                  <source
+                    media="(max-width: 767px)"
+                    srcSet="/logo-mobile.png 1x, /logo-mobile-2x.png 2x"
+                  />
+                  {/* Fallback */}
                   <img 
                     src="/logo-mobile.png"
                     alt="Dr. Javier del Rosario - Urólogo"
                     className="h-8 w-auto"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/logo.png';
+                    }}
                   />
                 </picture>
               </div>
@@ -174,14 +184,14 @@ const Header = () => {
                 variant="ghost"
                 size="sm"
                 onClick={closeMobileMenu}
-                className="p-2"
+                className="p-1 hover:bg-gray-100"
               >
                 <X className="h-6 w-6" />
               </Button>
             </div>
 
             {/* Mobile Navigation Links */}
-            <nav className="flex flex-col flex-grow p-6 space-y-6 bg-white">
+            <nav className="flex flex-col flex-1 p-6 space-y-4 bg-white overflow-y-auto">
               <Link
                 to="/"
                 onClick={closeMobileMenu}
@@ -221,7 +231,7 @@ const Header = () => {
             </nav>
 
             {/* Mobile Menu Actions */}
-            <div className="mt-auto p-6 space-y-4 bg-white border-t border-gray-200">
+            <div className="flex-shrink-0 p-4 space-y-3 bg-white border-t border-gray-200">
               {/* Language Toggle */}
               <Button
                 variant="outline"
@@ -229,7 +239,7 @@ const Header = () => {
                   toggleLanguage();
                   closeMobileMenu();
                 }}
-                className="w-full flex items-center justify-center space-x-2"
+                className="w-full flex items-center justify-center space-x-2 h-10"
               >
                 <Globe className="h-4 w-4" />
                 <span>{language === 'es' ? 'English' : 'Español'}</span>
@@ -241,9 +251,9 @@ const Header = () => {
                   handleWhatsApp();
                   closeMobileMenu();
                 }}
-                className="w-full btn-whatsapp flex items-center justify-center space-x-2"
+                className="w-full btn-whatsapp flex items-center justify-center space-x-2 h-10"
               >
-                <MessageCircle className="h-5 w-5" />
+                <MessageCircle className="h-4 w-4" />
                 <span>WhatsApp</span>
               </Button>
             </div>
