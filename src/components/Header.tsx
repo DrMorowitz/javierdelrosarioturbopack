@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Globe, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import CloudinaryLogo from './CloudinaryLogo';
 
 const Header = () => {
   const location = useLocation();
-  const { language, setLanguage, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActiveRoute = (path: string) => {
     return location.pathname === path;
   };
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'es' ? 'en' : 'es');
-  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -81,7 +76,7 @@ const Header = () => {
                 isActiveRoute('/') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              {t('nav.home')}
+              Inicio
             </Link>
             <Link
               to="/sobre-mi"
@@ -89,7 +84,7 @@ const Header = () => {
                 isActiveRoute('/sobre-mi') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              {t('nav.about')}
+              Sobre Mí
             </Link>
             <Link
               to="/servicios"
@@ -97,7 +92,7 @@ const Header = () => {
                 isActiveRoute('/servicios') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              {t('nav.services')}
+              Servicios
             </Link>
             <Link
               to="/contacto"
@@ -105,22 +100,10 @@ const Header = () => {
                 isActiveRoute('/contacto') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              {t('nav.contact')}
+              Contacto
             </Link>
           </nav>
 
-          {/* Desktop Language Toggle */}
-          <div className="hidden lg:flex items-center">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleLanguage}
-              className="flex items-center space-x-1"
-            >
-              <Globe className="h-4 w-4" />
-              <span>{language.toUpperCase()}</span>
-            </Button>
-          </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden">
@@ -141,99 +124,87 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Lateral Menu */}
+      {/* Mobile Lateral Menu - Clean Rebuild */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/50 mobile-backdrop"
+            className="fixed inset-0 bg-black/50"
             onClick={closeMobileMenu}
           />
           
           {/* Slide-out Menu */}
-          <div className={`fixed top-0 right-0 h-screen w-72 max-w-[85vw] bg-white border-l border-gray-200 shadow-2xl transform transition-transform duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}>
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white shadow-2xl">
             <div className="flex flex-col h-full">
-              {/* Mobile Menu Header - Clean */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0">
-                <div className="w-8 h-8">
-                  <img 
-                    src="/logo-mobile.png"
-                    alt=""
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = '/logo.png';
-                    }}
-                  />
-                </div>
+              {/* Mobile Menu Header - Logo Only */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <img 
+                  src="/logo-mobile.png"
+                  alt="Dr. Javier del Rosario"
+                  className="h-10 w-auto"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/logo.png';
+                  }}
+                />
                 <button
                   onClick={closeMobileMenu}
-                  className="p-2 hover:bg-gray-100 rounded-md"
+                  className="p-2 hover:bg-gray-100 rounded-md transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="h-6 w-6 text-gray-600" />
                 </button>
               </div>
 
-              {/* Mobile Navigation Links - Takes remaining space */}
-              <div className="flex-1 bg-white overflow-y-auto">
-                <nav className="flex flex-col p-6 space-y-6 h-full">
+              {/* Mobile Navigation - Clean Pages Only */}
+              <nav className="flex-1 p-6">
+                <div className="space-y-1">
                   <Link
                     to="/"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-2 ${
-                      isActiveRoute('/') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                      isActiveRoute('/') 
+                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
                     }`}
                   >
-                    {t('nav.home')}
+                    Inicio
                   </Link>
                   <Link
                     to="/sobre-mi"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-2 ${
-                      isActiveRoute('/sobre-mi') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                      isActiveRoute('/sobre-mi') 
+                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
                     }`}
                   >
-                    {t('nav.about')}
+                    Sobre Mí
                   </Link>
                   <Link
                     to="/servicios"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-2 ${
-                      isActiveRoute('/servicios') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                      isActiveRoute('/servicios') 
+                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
                     }`}
                   >
-                    {t('nav.services')}
+                    Servicios
                   </Link>
                   <Link
                     to="/contacto"
                     onClick={closeMobileMenu}
-                    className={`text-lg font-medium transition-colors py-2 ${
-                      isActiveRoute('/contacto') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                      isActiveRoute('/contacto') 
+                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600' 
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
                     }`}
                   >
-                    {t('nav.contact')}
+                    Contacto
                   </Link>
-                </nav>
-              </div>
-
-              {/* Mobile Menu Actions - Fixed at Bottom */}
-              <div className="flex-shrink-0 p-4 bg-white border-t border-gray-200">
-                {/* Language Toggle */}
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    toggleLanguage();
-                    closeMobileMenu();
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 h-11"
-                >
-                  <Globe className="h-4 w-4" />
-                  <span>{language === 'es' ? 'English' : 'Español'}</span>
-                </Button>
-              </div>
+                </div>
+              </nav>
             </div>
           </div>
         </div>
