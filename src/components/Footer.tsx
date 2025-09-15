@@ -20,10 +20,29 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <CloudinaryLogo 
-                alt="Dr. Javier del Rosario - Urólogo" 
-                className="h-10 w-auto md:h-12"
-              />
+              <picture>
+                {/* Desktop */}
+                <source
+                  media="(min-width: 1024px)"
+                  srcSet="/logo-desktop.png 1x, /logo-desktop-2x.png 2x"
+                />
+                {/* Tablet */}
+                <source
+                  media="(min-width: 768px)"
+                  srcSet="/logo-tablet.png 1x, /logo-tablet-2x.png 2x"
+                />
+                {/* Mobile */}
+                <source
+                  media="(max-width: 767px)"
+                  srcSet="/logo-mobile.png 1x, /logo-mobile-2x.png 2x"
+                />
+                {/* Fallback */}
+                <img 
+                  src="/logo-desktop.png"
+                  alt="Dr. Javier del Rosario - Urólogo" 
+                  className="h-10 w-auto md:h-12"
+                />
+              </picture>
               <span className="font-bold text-xl">Dr. Javier del Rosario</span>
             </div>
             <p className="text-background/80 leading-relaxed mb-6 max-w-md">

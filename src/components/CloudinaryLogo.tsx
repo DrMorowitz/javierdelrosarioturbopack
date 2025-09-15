@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { cloudinary } from '@/config/cloudinary';
 import { format, quality } from '@cloudinary/url-gen/actions/delivery';
 import { scale } from '@cloudinary/url-gen/actions/resize';
@@ -12,25 +12,41 @@ const CloudinaryLogo: React.FC<CloudinaryLogoProps> = ({
   className = "h-10 w-auto max-h-10",
   alt = "Dr. Javier del Rosario - Urólogo"
 }) => {
+  const [useCloudinary, setUseCloudinary] = useState(true);
+  const [imageError, setImageError] = useState(false);
+  
   // Check if Cloudinary is configured
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   
-  if (!cloudName) {
-    // Fallback to local asset if Cloudinary not configured
+  // If no cloud name or previous error, use local fallback
+  if (!cloudName || !useCloudinary || imageError) {
     return (
       <img 
         src="/logo.png" 
         alt={alt}
         className={className}
+        onError={() => {
+          console.warn('Local logo fallback also failed');
+        }}
       />
     );
   }
 
   try {
-    // Generate responsive Cloudinary URLs
-    const generateLogoUrl = (filename: string, width: number) => {
+    // Generate responsive Cloudinary URLs with multiple filename attempts
+    const generateLogoUrl = (baseFilename: string, width: number) => {
+      // Try multiple possible filenames
+      const possibleFilenames = [
+        `${baseFilename}.png`,
+        `${baseFilename}`,
+        `logo-desktop.png`,
+        `logo.png`,
+        `logo`
+      ];
+      
+      // Use the first filename for now, we'll handle errors with fallback
       return cloudinary
-        .image(`logos/${filename}`)
+        .image(`logos/${possibleFilenames[0]}`)
         .delivery(format('auto'))
         .delivery(quality('auto'))
         .resize(scale().width(width))
@@ -45,8 +61,14 @@ const CloudinaryLogo: React.FC<CloudinaryLogoProps> = ({
     const logoDesktop1x = generateLogoUrl('logo-desktop', 240);
     const logoDesktop2x = generateLogoUrl('logo-desktop-2x', 480);
 
+    const handleImageError = () => {
+      console.warn('Cloudinary logo failed to load, switching to local fallback');
+      setImageError(true);
+      setUseCloudinary(false);
+    };
+
     return (
-      <picture className={className}>
+      <picture className="contents">
         {/* Desktop */}
         <source
           media="(min-width: 1024px)"
@@ -68,16 +90,12 @@ const CloudinaryLogo: React.FC<CloudinaryLogoProps> = ({
           alt={alt}
           className={className}
           loading="eager"
-          onError={(e) => {
-            // Fallback to local asset on error
-            const target = e.target as HTMLImageElement;
-            target.src = '/logo.png';
-          }}
+          onError={handleImageError}
         />
       </picture>
     );
   } catch (error) {
-    console.warn('Cloudinary logo failed to load, falling back to local asset:', error);
+    console.warn('Cloudinary logo configuration failed, using local fallback:', error);
     // Fallback to local asset
     return (
       <img 

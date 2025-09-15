@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Globe } from 'lucide-react';
+import { Globe, Menu, X, MessageCircle } from 'lucide-react';
 import CloudinaryLogo from './CloudinaryLogo';
 
 const Header = () => {
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActiveRoute = (path: string) => {
     return location.pathname === path;
@@ -17,16 +18,63 @@ const Header = () => {
     setLanguage(language === 'es' ? 'en' : 'es');
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, [isMobileMenuOpen]);
+
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent('Hola Dr. del Rosario, me gustaría agendar una consulta.');
+    window.open(`https://wa.me/50760000000?text=${message}`, '_blank');
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="section-container">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <CloudinaryLogo 
-              alt="Dr. Javier del Rosario - Urólogo" 
-              className="responsive-logo max-h-12"
-            />
+            <picture>
+              {/* Desktop */}
+              <source
+                media="(min-width: 1024px)"
+                srcSet="/logo-desktop.png 1x, /logo-desktop-2x.png 2x"
+              />
+              {/* Tablet */}
+              <source
+                media="(min-width: 768px)"
+                srcSet="/logo-tablet.png 1x, /logo-tablet-2x.png 2x"
+              />
+              {/* Mobile */}
+              <source
+                media="(max-width: 767px)"
+                srcSet="/logo-mobile.png 1x, /logo-mobile-2x.png 2x"
+              />
+              {/* Fallback */}
+              <img 
+                src="/logo-desktop.png"
+                alt="Dr. Javier del Rosario - Urólogo"
+                className="h-8 md:h-10 lg:h-12 w-auto max-h-12"
+                style={{ maxHeight: '48px' }}
+              />
+            </picture>
           </Link>
 
           {/* Navigation */}
@@ -65,26 +113,143 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* CTA and Language Toggle */}
-          <div className="flex items-center space-x-4">
+          {/* Desktop Language Toggle */}
+          <div className="hidden lg:flex items-center">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className="hidden md:flex items-center space-x-1"
+              className="flex items-center space-x-1"
             >
               <Globe className="h-4 w-4" />
               <span>{language.toUpperCase()}</span>
             </Button>
-            
-            <Link to="/contacto">
-              <Button className="btn-primary text-sm lg:text-base px-4 lg:px-8 py-2 lg:py-4">
-                {t('nav.appointment')}
-              </Button>
-            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMobileMenu}
+              className="p-2"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </Button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Lateral Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/50 mobile-backdrop"
+            onClick={closeMobileMenu}
+          />
+          
+          {/* Slide-out Menu */}
+          <div className={`fixed top-0 right-0 h-full w-80 max-w-sm bg-white border-l border-gray-200 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}>
+            
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
+              <div className="flex items-center">
+                <picture>
+                  <img 
+                    src="/logo-mobile.png"
+                    alt="Dr. Javier del Rosario - Urólogo"
+                    className="h-8 w-auto"
+                  />
+                </picture>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={closeMobileMenu}
+                className="p-2"
+              >
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
+
+            {/* Mobile Navigation Links */}
+            <nav className="flex flex-col flex-grow p-6 space-y-6 bg-white">
+              <Link
+                to="/"
+                onClick={closeMobileMenu}
+                className={`text-lg font-medium transition-colors py-2 ${
+                  isActiveRoute('/') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                }`}
+              >
+                {t('nav.home')}
+              </Link>
+              <Link
+                to="/sobre-mi"
+                onClick={closeMobileMenu}
+                className={`text-lg font-medium transition-colors py-2 ${
+                  isActiveRoute('/sobre-mi') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                }`}
+              >
+                {t('nav.about')}
+              </Link>
+              <Link
+                to="/servicios"
+                onClick={closeMobileMenu}
+                className={`text-lg font-medium transition-colors py-2 ${
+                  isActiveRoute('/servicios') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                }`}
+              >
+                {t('nav.services')}
+              </Link>
+              <Link
+                to="/contacto"
+                onClick={closeMobileMenu}
+                className={`text-lg font-medium transition-colors py-2 ${
+                  isActiveRoute('/contacto') ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'text-gray-900 hover:text-blue-600'
+                }`}
+              >
+                {t('nav.contact')}
+              </Link>
+            </nav>
+
+            {/* Mobile Menu Actions */}
+            <div className="mt-auto p-6 space-y-4 bg-white border-t border-gray-200">
+              {/* Language Toggle */}
+              <Button
+                variant="outline"
+                onClick={() => {
+                  toggleLanguage();
+                  closeMobileMenu();
+                }}
+                className="w-full flex items-center justify-center space-x-2"
+              >
+                <Globe className="h-4 w-4" />
+                <span>{language === 'es' ? 'English' : 'Español'}</span>
+              </Button>
+
+              {/* WhatsApp Button */}
+              <Button
+                onClick={() => {
+                  handleWhatsApp();
+                  closeMobileMenu();
+                }}
+                className="w-full btn-whatsapp flex items-center justify-center space-x-2"
+              >
+                <MessageCircle className="h-5 w-5" />
+                <span>WhatsApp</span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
