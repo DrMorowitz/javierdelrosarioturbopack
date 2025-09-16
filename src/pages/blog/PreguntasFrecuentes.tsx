@@ -1,0 +1,596 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import Header from '@/components/Header';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft, HelpCircle, ChevronDown, ChevronUp, Calendar, User, DollarSign, Clock, Shield } from 'lucide-react';
+import SEO from '@/components/SEO';
+import { generateFAQSchema, generateBreadcrumbSchema } from '@/lib/schema';
+import { 
+  fadeIn, 
+  staggerContainer,
+  scaleIn,
+  viewportConfig 
+} from '@/lib/animations';
+
+const PreguntasFrecuentes = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Extract all FAQs for schema generation
+  const allFaqs: Array<{question: string, answer: string}> = [];
+
+  const faqCategories = [
+    {
+      category: 'Consultas y Costos',
+      icon: DollarSign,
+      color: 'text-green-600',
+      faqs: [
+        {
+          question: '¿Cuánto cobra un urólogo en Panamá?',
+          answer: `Los costos de consulta urológica en Panamá varían según la complejidad:
+          
+          **Consulta inicial:** $80-120
+          **Consulta de seguimiento:** $60-80
+          **Consulta con estudios:** $100-150
+          
+          Los precios pueden variar según la ubicación, experiencia del médico y si requiere estudios adicionales como ecografía o cistoscopia.`
+        },
+        {
+          question: '¿Los seguros médicos cubren consultas urológicas?',
+          answer: `La mayoría de seguros médicos en Panamá cubren consultas urológicas cuando son referidas por médico general:
+          
+          **Seguros que típicamente cubren:**
+          • Seguros del Estado (CSS, MINSA)
+          • Seguros privados con cobertura médica especializada
+          • Pólizas empresariales con medicina especializada
+          
+          **Recomendación:** Verificar cobertura antes de la cita y llevar referencia médica cuando sea requerida.`
+        },
+        {
+          question: '¿Qué incluye una consulta urológica completa?',
+          answer: `Una consulta urológica integral incluye:
+          
+          **Historia clínica detallada:**
+          • Síntomas actuales y evolución
+          • Antecedentes médicos y quirúrgicos
+          • Medicamentos y alergias
+          
+          **Examen físico:**
+          • Examen abdominal
+          • Examen genital externo
+          • Tacto rectal (cuando está indicado)
+          
+          **Estudios complementarios si necesarios:**
+          • Ecografía urológica
+          • Análisis de orina
+          • Estudios de función renal`
+        }
+      ]
+    },
+    {
+      category: 'Síntomas y Cuándo Consultar',
+      icon: HelpCircle,
+      color: 'text-blue-600',
+      faqs: [
+        {
+          question: '¿Cuándo es necesario consultar a un urólogo?',
+          answer: `Debe consultar a un urólogo cuando presente:
+          
+          **Síntomas de alarma inmediatos:**
+          • Sangre en la orina (hematuria)
+          • Dolor intenso en flancos o abdomen bajo
+          • Dificultad completa para orinar
+          • Dolor testicular súbito
+          
+          **Síntomas que requieren evaluación:**
+          • Ardor al orinar persistente
+          • Levantarse frecuentemente a orinar de noche
+          • Chorro urinario débil o interrumpido
+          • Dolor pélvico crónico
+          
+          **Chequeos preventivos:**
+          • Hombres mayores de 50 años (45 si hay antecedentes familiares)
+          • Evaluación anual de próstata y función renal`
+        },
+        {
+          question: '¿Qué enfermedades detecta un urólogo?',
+          answer: `Los urólogos diagnostican y tratan:
+          
+          **Condiciones renales:**
+          • Cálculos renales
+          • Infecciones renales
+          • Quistes renales
+          • Cáncer de riñón
+          
+          **Problemas prostáticos:**
+          • Hiperplasia prostática benigna (HPB)
+          • Prostatitis
+          • Cáncer de próstata
+          
+          **Condiciones de vejiga:**
+          • Infecciones urinarias recurrentes
+          • Cáncer de vejiga
+          • Incontinencia urinaria
+          
+          **Problemas sexuales masculinos:**
+          • Disfunción eréctil
+          • Eyaculación precoz
+          • Infertilidad masculina`
+        },
+        {
+          question: '¿Es normal tener sangre en la orina?',
+          answer: `La sangre en la orina NUNCA es normal y siempre requiere evaluación médica.
+          
+          **Hematuria visible (orina roja o rosada):**
+          • Requiere consulta inmediata
+          • Puede indicar cálculos, infección o cáncer
+          • No ignorar aunque no haya dolor
+          
+          **Hematuria microscópica:**
+          • Solo detectada en exámenes de laboratorio
+          • También requiere evaluación urológica
+          • Puede ser primer signo de enfermedad
+          
+          **Posibles causas:**
+          • Cálculos renales o ureterales
+          • Infecciones del tracto urinario
+          • Cáncer de vejiga, riñón o próstata
+          • Traumatismos
+          • Medicamentos anticoagulantes`
+        }
+      ]
+    },
+    {
+      category: 'Procedimientos Comunes',
+      icon: Shield,
+      color: 'text-purple-600',
+      faqs: [
+        {
+          question: '¿Qué se hace en la primera cita con el urólogo?',
+          answer: `En su primera consulta urológica:
+          
+          **Antes de la cita:**
+          • Traer resultados de estudios previos
+          • Lista de medicamentos actuales
+          • Historia de síntomas y su evolución
+          
+          **Durante la consulta:**
+          • Historia clínica detallada (30-45 minutos)
+          • Examen físico apropiado según síntomas
+          • Explicación clara de hallazgos
+          • Plan de estudios adicionales si necesarios
+          
+          **Al final de la consulta:**
+          • Diagnóstico preliminar o diferencial
+          • Plan de tratamiento explicado
+          • Próxima cita programada
+          • Instrucciones claras por escrito`
+        },
+        {
+          question: '¿La vasectomía es reversible?',
+          answer: `La vasectomía puede revertirse, pero es un procedimiento más complejo:
+          
+          **Reversión de vasectomía:**
+          • Cirugía microscópica de 2-4 horas
+          • Tasa de éxito: 70-90% para permeabilidad
+          • Tasa de embarazo: 50-70%
+          • Costo: 3-5 veces más que vasectomía original
+          
+          **Factores que afectan el éxito:**
+          • Tiempo transcurrido desde la vasectomía
+          • Técnica original utilizada
+          • Presencia de anticuerpos antiesperma
+          
+          **Alternativas:**
+          • Fertilización in vitro con aspiración espermática
+          • Congelación de esperma antes de vasectomía
+          
+          **Recomendación:** Considerar la vasectomía como permanente al tomar la decisión.`
+        },
+        {
+          question: '¿Duele la biopsia de próstata?',
+          answer: `La biopsia prostática causa molestias tolerables con preparación adecuada:
+          
+          **Durante el procedimiento:**
+          • Anestesia local en área perineal
+          • Molestia durante inserción de la aguja
+          • Procedimiento dura 10-15 minutos
+          • La mayoría de pacientes lo toleran bien
+          
+          **Después del procedimiento:**
+          • Sangrado rectal leve por 1-2 días
+          • Sangre en orina por 2-3 días
+          • Sangre en semen hasta por 4 semanas
+          • Analgésicos simples controlan molestias
+          
+          **Para minimizar molestias:**
+          • Enema de limpieza previa
+          • Antibiótico profiláctico
+          • Analgésico 1 hora antes
+          • Técnica transperineal es menos molesta que transrectal`
+        }
+      ]
+    },
+    {
+      category: 'Cuidados y Prevención',
+      icon: Clock,
+      color: 'text-orange-600',
+      faqs: [
+        {
+          question: '¿Cómo prevenir cálculos renales en el clima de Panamá?',
+          answer: `En el clima tropical de Panamá es especialmente importante:
+          
+          **Hidratación adecuada:**
+          • Beber 2.5-3 litros de agua diarios
+          • Aumentar durante ejercicio y exposición al sol
+          • Orina debe ser amarillo claro
+          • Evitar bebidas azucaradas en exceso
+          
+          **Modificaciones dietéticas:**
+          • Reducir sal a menos de 2.3g diarios
+          • Limitar oxalatos: espinacas, nueces, té negro
+          • Consumir calcio de fuentes alimentarias
+          • Reducir proteína animal excesiva
+          
+          **En el trópico específicamente:**
+          • Reponer electrolitos durante ejercicio intenso
+          • Beber agua antes de sentir sed
+          • Considerar suplemento de citrato si hay antecedentes
+          • Monitorear color de orina como indicador`
+        },
+        {
+          question: '¿Con qué frecuencia debo hacerme chequeos urológicos?',
+          answer: `Frecuencia recomendada según edad y factores de riesgo:
+          
+          **20-40 años (sin síntomas):**
+          • Cada 2-3 años si no hay antecedentes
+          • Anual si hay antecedentes familiares
+          
+          **40-50 años:**
+          • Cada 1-2 años
+          • Inicio de screening prostático
+          • Evaluación de función renal
+          
+          **50+ años:**
+          • Anualmente
+          • PSA y tacto rectal
+          • Ecografía prostática y renal
+          
+          **Factores que aumentan frecuencia:**
+          • Antecedentes familiares de cáncer urológico
+          • Diabetes o hipertensión
+          • Historia de cálculos renales
+          • Infecciones urinarias recurrentes`
+        },
+        {
+          question: '¿Los problemas de próstata siempre requieren cirugía?',
+          answer: `No, la mayoría de problemas prostáticos se manejan inicialmente con tratamiento médico:
+          
+          **Hiperplasia Prostática Benigna (HPB):**
+          
+          **Tratamiento médico (primera línea):**
+          • Alfabloqueadores (tamsulosina, doxazosina)
+          • Inhibidores de 5-alfa reductasa (finasteride)
+          • Combinaciones de medicamentos
+          • 70-80% mejoran con medicamentos
+          
+          **Tratamientos mínimamente invasivos:**
+          • Terapia Rezum (vapor de agua)
+          • Láser prostático
+          • Embolización de arterias prostáticas
+          
+          **Cirugía (cuando otros fallan):**
+          • RTU prostática
+          • Prostatectomía simple
+          • Solo 10-15% requieren cirugía
+          
+          **El tratamiento se escoge según:**
+          • Severidad de síntomas
+          • Tamaño de la próstata
+          • Edad y condición general del paciente
+          • Respuesta a tratamientos previos`
+        }
+      ]
+    }
+  ];
+
+  // Extract FAQs for schema generation
+  faqCategories.forEach(category => {
+    category.faqs.forEach(faq => {
+      allFaqs.push({
+        question: faq.question,
+        answer: faq.answer
+      });
+    });
+  });
+
+  // Generate schemas
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Inicio', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: 'Preguntas Frecuentes', url: '/blog/preguntas-frecuentes' }
+  ]);
+
+  const faqSchema = generateFAQSchema(allFaqs);
+
+  const combinedSchema = {
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, faqSchema]
+  };
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  return (
+    <div className="min-h-screen">
+      <SEO
+        title="Preguntas Frecuentes sobre Urología en Panamá - Dr. Javier del Rosario"
+        description="Respuestas a las preguntas más frecuentes sobre consultas urológicas en Panamá: costos, síntomas, procedimientos y prevención. Información médica confiable del Dr. del Rosario."
+        keywords="cuánto cobra urólogo panamá, cuándo consultar urólogo, qué hace urólogo, preguntas frecuentes urología, consulta urológica panamá, precios urología"
+        schema={combinedSchema}
+        type="article"
+        publishDate="2025-09-15T00:00:00Z"
+        modifiedDate="2025-09-15T00:00:00Z"
+      />
+      <Header />
+      
+      <main>
+        {/* Breadcrumb */}
+        <motion.section 
+          className="section-padding-sm bg-muted/30"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <div className="section-container">
+            <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <Link to="/" className="hover:text-primary">Inicio</Link>
+              <span>/</span>
+              <Link to="/blog" className="hover:text-primary">Blog</Link>
+              <span>/</span>
+              <span className="text-foreground">Preguntas Frecuentes</span>
+            </nav>
+          </div>
+        </motion.section>
+
+        {/* Hero Section */}
+        <motion.section 
+          className="section-padding bg-gradient-to-r from-orange-50 to-yellow-50"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <div className="section-container">
+            <div className="max-w-4xl">
+              <motion.div 
+                className="flex items-center gap-2 mb-4"
+                variants={fadeIn}
+                transition={{ delay: 0.1 }}
+              >
+                <Button variant="ghost" size="sm" asChild>
+                  <Link to="/blog" className="gap-2">
+                    <ArrowLeft className="w-4 h-4" />
+                    Volver al Blog
+                  </Link>
+                </Button>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-3 mb-4"
+                variants={fadeIn}
+                transition={{ delay: 0.2 }}
+              >
+                <HelpCircle className="w-8 h-8 text-orange-600" />
+                <span className="text-orange-600 font-semibold">Preguntas y Respuestas</span>
+              </motion.div>
+              
+              <motion.h1 
+                className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+                variants={scaleIn}
+              >
+                Preguntas Frecuentes sobre Urología en Panamá
+              </motion.h1>
+              <motion.p 
+                className="text-xl text-muted-foreground mb-8 leading-relaxed"
+                variants={fadeIn}
+                transition={{ delay: 0.3 }}
+              >
+                Respuestas a las dudas más comunes sobre consultas, procedimientos, costos 
+                y cuidados urológicos. Información clara y basada en evidencia.
+              </motion.p>
+              <motion.div 
+                className="flex items-center gap-4 text-sm text-muted-foreground"
+                variants={fadeIn}
+                transition={{ delay: 0.4 }}
+              >
+                <div className="flex items-center gap-1">
+                  <User className="w-4 h-4" />
+                  Dr. Javier del Rosario
+                </div>
+                <div className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  Actualizado Sep 2025
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* FAQ Categories */}
+        <motion.section 
+          className="section-padding"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={staggerContainer}
+        >
+          <div className="section-container">
+            <motion.div 
+              className="text-center mb-12"
+              variants={fadeIn}
+            >
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Encuentra Respuestas a Tus Dudas
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+                Organizamos las preguntas más frecuentes en categorías para que encuentres rápidamente la información que buscas.
+              </p>
+            </motion.div>
+
+            <div className="space-y-12">
+              {faqCategories.map((category, categoryIndex) => {
+                const IconComponent = category.icon;
+                return (
+                  <motion.div
+                    key={categoryIndex}
+                    variants={fadeIn}
+                    custom={categoryIndex}
+                    className="medical-card"
+                  >
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className={`w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 ${category.color.replace('text-', 'border-')}`}>
+                        <IconComponent className={`w-6 h-6 ${category.color}`} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-foreground">
+                        {category.category}
+                      </h3>
+                    </div>
+
+                    <div className="space-y-4">
+                      {category.faqs.map((faq, faqIndex) => {
+                        const globalIndex = categoryIndex * 100 + faqIndex;
+                        const isOpen = openFaq === globalIndex;
+                        
+                        return (
+                          <div key={faqIndex} className="border border-border rounded-lg overflow-hidden">
+                            <button
+                              onClick={() => toggleFaq(globalIndex)}
+                              className="w-full flex items-center justify-between p-6 text-left hover:bg-muted/50 transition-colors"
+                            >
+                              <h4 className="text-lg font-semibold text-foreground pr-4">
+                                {faq.question}
+                              </h4>
+                              {isOpen ? (
+                                <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                              ) : (
+                                <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                              )}
+                            </button>
+                            
+                            <motion.div
+                              initial={false}
+                              animate={{ height: isOpen ? 'auto' : 0 }}
+                              transition={{ duration: 0.3, ease: 'easeInOut' }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-6 pb-6">
+                                <div 
+                                  className="prose prose-sm max-w-none text-muted-foreground"
+                                  style={{ whiteSpace: 'pre-line' }}
+                                >
+                                  {faq.answer}
+                                </div>
+                              </div>
+                            </motion.div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Quick Contact */}
+        <motion.section 
+          className="section-padding bg-primary/5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={fadeIn}
+        >
+          <div className="section-container">
+            <div className="text-center max-w-4xl mx-auto">
+              <HelpCircle className="w-16 h-16 text-orange-600 mx-auto mb-6" />
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                ¿No Encontraste tu Pregunta?
+              </h2>
+              <p className="text-muted-foreground text-lg mb-8">
+                Si tienes una duda específica que no está cubierta aquí, no dudes en contactarnos. 
+                Estamos aquí para resolver todas tus inquietudes sobre salud urológica.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" asChild>
+                  <Link to="/contacto">
+                    Agendar Consulta
+                  </Link>
+                </Button>
+                <Button variant="outline" size="lg" onClick={() => {
+                  const message = encodeURIComponent('Hola Dr. del Rosario, tengo una pregunta específica sobre urología.');
+                  window.open(`https://wa.me/50760000000?text=${message}`, '_blank');
+                }}>
+                  Preguntar por WhatsApp
+                </Button>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Additional Resources */}
+        <motion.section 
+          className="section-padding"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={fadeIn}
+        >
+          <div className="section-container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Recursos Adicionales
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Explora más contenido educativo en nuestro blog
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { title: 'Condiciones Comunes', route: '/blog/condiciones-comunes', color: 'bg-blue-500' },
+                { title: 'Síntomas de Alerta', route: '/blog/sintomas-alerta', color: 'bg-red-500' },
+                { title: 'Prevención', route: '/blog/prevencion', color: 'bg-green-500' },
+                { title: 'Procedimientos', route: '/blog/procedimientos', color: 'bg-purple-500' }
+              ].map((resource, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeIn}
+                  custom={index}
+                  className="medical-card group cursor-pointer"
+                  whileHover={{ y: -4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <Link to={resource.route} className="block">
+                    <div className={`${resource.color} h-32 rounded-lg mb-4 flex items-center justify-center`}>
+                      <span className="text-white font-semibold">{resource.title}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-foreground group-hover:text-primary transition-colors">
+                        Leer más
+                      </span>
+                      <ChevronDown className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform rotate-[-90deg]" />
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+      </main>
+    </div>
+  );
+};
+
+export default PreguntasFrecuentes;

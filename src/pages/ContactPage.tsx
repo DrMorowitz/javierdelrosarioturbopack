@@ -11,25 +11,31 @@ const ContactPage = () => {
   const content = {
     es: {
       title: "Contacto - Dr. Javier del Rosario Urólogo",
-      subtitle: "Agenda tu consulta en nuestras ubicaciones en Colón y Coronado",
+      subtitle: "Agenda tu consulta en nuestras 3 ubicaciones: The Panama Clinic, CHSF-Coronado, Centro Médico del Caribe-Colón",
       locations: {
         title: "Nuestras Ubicaciones",
-        colon: {
-          name: "Consulta Colón",
-          address: "Hospital Regional de Colón\nCalle Principal, Colón",
+        panama: {
+          name: "The Panama Clinic",
+          address: "Ciudad de Panamá\nConsultorio Principal",
           schedule: "Lunes a Viernes: 8:00 AM - 5:00 PM"
         },
         coronado: {
-          name: "Consulta Coronado", 
-          address: "Centro Médico Coronado\nAv. Roberto Eisenmann, Coronado",
+          name: "Clínica Hospital San Fernando Coronado", 
+          address: "CHSF-Coronado\nAv. Roberto Eisenmann, Coronado",
           schedule: "Martes y Jueves: 2:00 PM - 6:00 PM"
+        },
+        colon: {
+          name: "Centro Médico del Caribe-Colón",
+          address: "Colón\nCalle Principal, Colón",
+          schedule: "Miércoles y Viernes: 9:00 AM - 1:00 PM"
         }
       },
       contact: {
         title: "Información de Contacto",
         phone: {
-          colon: "+507 441-9876",
+          panama: "+507 123-4567",
           coronado: "+507 240-5432",
+          colon: "+507 441-9876",
           whatsapp: "+507 6000-0000"
         }
       },
@@ -45,25 +51,31 @@ const ContactPage = () => {
     },
     en: {
       title: "Contact - Dr. Javier del Rosario Urologist", 
-      subtitle: "Schedule your consultation at our locations in Colón and Coronado",
+      subtitle: "Schedule your consultation at our 3 locations: The Panama Clinic, CHSF-Coronado, Centro Médico del Caribe-Colón",
       locations: {
         title: "Our Locations",
-        colon: {
-          name: "Colón Office",
-          address: "Regional Hospital of Colón\nMain Street, Colón",
+        panama: {
+          name: "The Panama Clinic",
+          address: "Panama City\nMain Office",
           schedule: "Monday to Friday: 8:00 AM - 5:00 PM"
         },
         coronado: {
-          name: "Coronado Office",
-          address: "Coronado Medical Center\nRoberto Eisenmann Ave, Coronado", 
+          name: "CHSF-Coronado",
+          address: "Clínica Hospital San Fernando Coronado\nRoberto Eisenmann Ave, Coronado", 
           schedule: "Tuesday and Thursday: 2:00 PM - 6:00 PM"
+        },
+        colon: {
+          name: "Centro Médico del Caribe-Colón",
+          address: "Colón\nMain Street, Colón",
+          schedule: "Wednesday and Friday: 9:00 AM - 1:00 PM"
         }
       },
       contact: {
         title: "Contact Information",
         phone: {
-          colon: "+507 441-9876",
+          panama: "+507 123-4567",
           coronado: "+507 240-5432", 
+          colon: "+507 441-9876",
           whatsapp: "+507 6000-0000"
         }
       },
@@ -129,37 +141,42 @@ const ContactPage = () => {
                 </h2>
                 
                 <div className="space-y-8">
-                  {/* Colón Location */}
-                  <div className="medical-card">
+                  {/* Panama Clinic - Primary Location */}
+                  <div className="medical-card border-l-4 border-l-primary">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                         <MapPin className="w-6 h-6 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-foreground mb-2">
-                          {currentContent.locations.colon.name}
-                        </h3>
+                        <div className="flex items-center gap-2 mb-2">
+                          <h3 className="text-xl font-semibold text-foreground">
+                            {currentContent.locations.panama.name}
+                          </h3>
+                          <span className="px-2 py-1 bg-primary text-primary-foreground text-xs rounded-full">
+                            Principal
+                          </span>
+                        </div>
                         <p className="text-muted-foreground mb-3 whitespace-pre-line">
-                          {currentContent.locations.colon.address}
+                          {currentContent.locations.panama.address}
                         </p>
                         <div className="flex items-center space-x-2 mb-4">
                           <Clock className="w-4 h-4 text-primary" />
                           <span className="text-sm text-muted-foreground">
-                            {currentContent.locations.colon.schedule}
+                            {currentContent.locations.panama.schedule}
                           </span>
                         </div>
                         <div className="flex space-x-3">
                           <Button 
                             size="sm" 
                             className="btn-whatsapp"
-                            onClick={() => handleWhatsApp('Colón')}
+                            onClick={() => handleWhatsApp('The Panama Clinic')}
                           >
                             <MessageCircle className="w-4 h-4 mr-1" />
                             WhatsApp
                           </Button>
                           <Button size="sm" variant="outline">
                             <Phone className="w-4 h-4 mr-1" />
-                            {currentContent.contact.phone.colon}
+                            {currentContent.contact.phone.panama}
                           </Button>
                         </div>
                       </div>
@@ -189,7 +206,7 @@ const ContactPage = () => {
                           <Button 
                             size="sm" 
                             className="btn-whatsapp"
-                            onClick={() => handleWhatsApp('Coronado')}
+                            onClick={() => handleWhatsApp('CHSF-Coronado')}
                           >
                             <MessageCircle className="w-4 h-4 mr-1" />
                             WhatsApp
@@ -197,6 +214,43 @@ const ContactPage = () => {
                           <Button size="sm" variant="outline">
                             <Phone className="w-4 h-4 mr-1" />
                             {currentContent.contact.phone.coronado}
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Colón Location */}
+                  <div className="medical-card">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-6 h-6 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">
+                          {currentContent.locations.colon.name}
+                        </h3>
+                        <p className="text-muted-foreground mb-3 whitespace-pre-line">
+                          {currentContent.locations.colon.address}
+                        </p>
+                        <div className="flex items-center space-x-2 mb-4">
+                          <Clock className="w-4 h-4 text-primary" />
+                          <span className="text-sm text-muted-foreground">
+                            {currentContent.locations.colon.schedule}
+                          </span>
+                        </div>
+                        <div className="flex space-x-3">
+                          <Button 
+                            size="sm" 
+                            className="btn-whatsapp"
+                            onClick={() => handleWhatsApp('Centro Médico del Caribe-Colón')}
+                          >
+                            <MessageCircle className="w-4 h-4 mr-1" />
+                            WhatsApp
+                          </Button>
+                          <Button size="sm" variant="outline">
+                            <Phone className="w-4 h-4 mr-1" />
+                            {currentContent.contact.phone.colon}
                           </Button>
                         </div>
                       </div>

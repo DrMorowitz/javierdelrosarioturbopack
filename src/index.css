@@ -244,6 +244,14 @@
     border-radius: 2px;
   }
 
+  /* Mobile visibility fallback - ensure content is never completely hidden */
+  @media (max-width: 768px) {
+    [data-framer-motion] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
   /* Respect user's motion preferences */
   @media (prefers-reduced-motion: reduce) {
     .hero-video {
@@ -253,6 +261,12 @@
     .hero-video-bg::after {
       content: '';
       @apply absolute inset-0 w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800;
+    }
+    
+    /* Ensure all animated elements are visible */
+    [data-framer-motion] {
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
 

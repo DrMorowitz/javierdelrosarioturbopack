@@ -20,17 +20,18 @@ const translations: Translations = {
   'nav.home': { es: 'Inicio', en: 'Home' },
   'nav.about': { es: 'Sobre Mí', en: 'About Me' },
   'nav.services': { es: 'Servicios', en: 'Services' },
+  'nav.blog': { es: 'Blog', en: 'Blog' },
   'nav.contact': { es: 'Contacto', en: 'Contact' },
   'nav.appointment': { es: 'Agendar Cita', en: 'Schedule Appointment' },
 
   // Hero Section
   'hero.title': { 
-    es: 'Dr. Javier del Rosario - Urólogo Especialista en Panamá | 25 Años de Experiencia', 
-    en: 'Dr. Javier del Rosario - Urology Specialist in Panama | 25 Years of Experience' 
+    es: 'Cuidado Urológico Integral Con La Atención Que Usted Merece', 
+    en: 'Comprehensive Urological Care With The Attention You Deserve' 
   },
   'hero.subtitle': { 
-    es: 'Especialista en cirugía de próstata, cálculos renales y biopsias. Con explicaciones claras como una clase universitaria y seguimiento personalizado.', 
-    en: 'Specialist in prostate surgery, kidney stones, and biopsies. With clear explanations like a university class and personalized follow-up.' 
+    es: 'Desde chequeos preventivos hasta cirugías especializadas, el Dr. Javier del Rosario ofrece tratamiento completo con el tiempo y la explicación que cada paciente necesita.', 
+    en: 'From preventive checkups to specialized surgeries, Dr. Javier del Rosario offers complete treatment with the time and explanation each patient needs.' 
   },
   'hero.cta.primary': { es: 'Agendar Consulta', en: 'Schedule Consultation' },
   'hero.cta.whatsapp': { es: 'WhatsApp', en: 'WhatsApp' },
@@ -39,19 +40,19 @@ const translations: Translations = {
   'stats.title': { es: 'Experiencia que Inspira Confianza', en: 'Experience That Inspires Trust' },
   'stats.experience': { es: '25+ Años de Experiencia', en: '25+ Years of Experience' },
   'stats.procedures': { es: '5,000+ Procedimientos Realizados', en: '5,000+ Procedures Performed' },
-  'stats.locations': { es: '2 Ubicaciones: Colón y Coronado', en: '2 Locations: Colón and Coronado' },
+  'stats.locations': { es: '3 Ubicaciones: The Panama Clinic, CHSF-Coronado, Centro Médico del Caribe-Colón', en: '3 Locations: The Panama Clinic, CHSF-Coronado, Centro Médico del Caribe-Colón' },
 
   // Services Section
-  'services.title': { es: 'Servicios Especializados', en: 'Specialized Services' },
-  'services.prostate.title': { es: 'Cirugías de Próstata', en: 'Prostate Surgeries' },
-  'services.prostate.desc': { es: 'RTU y Fotovaporización láser', en: 'TURP and Laser Photovaporization' },
-  'services.kidney.title': { es: 'Cirugías de Cálculos Renales', en: 'Kidney Stone Surgeries' },
-  'services.kidney.desc': { es: 'Ureteroscopía flexible y rígida', en: 'Flexible and Rigid Ureteroscopy' },
-  'services.biopsy.title': { es: 'Biopsias de Próstata', en: 'Prostate Biopsies' },
-  'services.biopsy.desc': { es: 'Procedimiento más común con seguimiento', en: 'Most common procedure with follow-up' },
-  'services.ultrasound.title': { es: 'Ultrasonido Urológico', en: 'Urological Ultrasound' },
-  'services.ultrasound.desc': { es: 'Incluido sin costo adicional', en: 'Included at no additional cost' },
-  'services.learn.more': { es: 'Ver más', en: 'Learn more' },
+  'services.title': { es: 'Servicios de Urología en Panamá', en: 'Urology Services in Panama' },
+  'services.vasectomy.title': { es: 'Vasectomía en Panamá', en: 'Vasectomy in Panama' },
+  'services.vasectomy.desc': { es: 'Procedimiento mínimamente invasivo con técnica sin bisturí y recuperación rápida', en: 'Minimally invasive procedure with no-scalpel technique and quick recovery' },
+  'services.kidney.title': { es: 'Cálculos Renales - Litotricia', en: 'Kidney Stones - Lithotripsy' },
+  'services.kidney.desc': { es: 'Ureteroscopía flexible y litotricia extracorpórea con tecnología avanzada', en: 'Flexible ureteroscopy and extracorporeal lithotripsy with advanced technology' },
+  'services.prostate.title': { es: 'Hiperplasia Prostática (HPB)', en: 'Benign Prostatic Hyperplasia (BPH)' },
+  'services.prostate.desc': { es: 'Terapia Rezum y cirugía láser para próstata agrandada sin incisiones', en: 'Rezum therapy and laser surgery for enlarged prostate without incisions' },
+  'services.circumcision.title': { es: 'Circuncisión en Panamá', en: 'Circumcision in Panama' },
+  'services.circumcision.desc': { es: 'Procedimiento para adultos y pediatría con técnica de mínima invasión', en: 'Adult and pediatric procedure with minimally invasive technique' },
+  'services.learn.more': { es: 'Agendar evaluación', en: 'Schedule evaluation' },
 
   // Why Choose Section
   'why.title': { es: '¿Por qué elegir al Dr. del Rosario?', en: 'Why choose Dr. del Rosario?' },
@@ -76,6 +77,21 @@ const translations: Translations = {
   'contact.insurance': { es: 'Seguro médico (opcional)', en: 'Medical insurance (optional)' },
   'contact.submit': { es: 'Enviar Consulta', en: 'Submit Consultation' },
   'contact.cliniweb': { es: 'Agendar en CliniWeb', en: 'Schedule on CliniWeb' },
+  
+  // Blog Section
+  'blog.title': { es: 'Educación Urológica', en: 'Urological Education' },
+  'blog.subtitle': { es: 'Información basada en evidencia científica para pacientes informados', en: 'Evidence-based information for informed patients' },
+  'blog.condiciones.title': { es: 'Condiciones Comunes', en: 'Common Conditions' },
+  'blog.condiciones.desc': { es: 'Cálculos renales, infecciones urinarias y más', en: 'Kidney stones, urinary infections and more' },
+  'blog.sintomas.title': { es: 'Síntomas de Alerta', en: 'Warning Symptoms' },
+  'blog.sintomas.desc': { es: 'Cuándo consultar urgentemente al urólogo', en: 'When to urgently consult a urologist' },
+  'blog.prevencion.title': { es: 'Prevención y Cuidado', en: 'Prevention and Care' },
+  'blog.prevencion.desc': { es: 'Consejos para una buena salud urológica', en: 'Tips for good urological health' },
+  'blog.procedimientos.title': { es: 'Procedimientos Explicados', en: 'Procedures Explained' },
+  'blog.procedimientos.desc': { es: 'Qué esperar en cada tratamiento', en: 'What to expect in each treatment' },
+  'blog.preguntas.title': { es: 'Preguntas Frecuentes', en: 'Frequently Asked Questions' },
+  'blog.preguntas.desc': { es: 'Respuestas a dudas comunes sobre costos y procedimientos', en: 'Answers to common questions about costs and procedures' },
+  'blog.visit.blog': { es: 'Ver todos los artículos', en: 'See all articles' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

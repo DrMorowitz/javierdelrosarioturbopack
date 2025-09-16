@@ -47,7 +47,7 @@ const Footer = () => {
             </div>
             <p className="text-background/80 leading-relaxed mb-6 max-w-md">
               Urólogo especialista con 25 años de experiencia. Cirugías de próstata, cálculos renales y biopsias. 
-              Explicaciones claras y seguimiento personalizado en Colón y Coronado.
+              Explicaciones claras y seguimiento personalizado en 3 ubicaciones.
             </p>
             <div className="flex space-x-4">
               <button 
@@ -93,7 +93,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-background/60" />
-                <span className="text-background/80 text-sm">Colón y Coronado</span>
+                <span className="text-background/80 text-sm">The Panama Clinic, CHSF-Coronado, Centro Médico del Caribe-Colón</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-background/60" />
@@ -108,8 +108,9 @@ const Footer = () => {
             <div className="mt-6">
               <h4 className="font-medium mb-2 text-sm">Horarios</h4>
               <p className="text-background/80 text-sm">
-                Lun - Vie: 8:00 AM - 5:00 PM<br />
-                Mar - Jue: 2:00 PM - 6:00 PM
+                Panama Clinic: Lun - Vie 8:00-17:00<br />
+                CHSF-Coronado: Mar - Jue 14:00-18:00<br />
+                Centro Caribe-Colón: Mié - Vie 9:00-13:00
               </p>
             </div>
           </div>

@@ -1,8 +1,15 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MessageCircle } from 'lucide-react';
-import { getHeroVideoUrl } from '@/config/cloudinary';
+import { MessageCircle, ArrowRight } from 'lucide-react';
+import { 
+  heroTextReveal, 
+  buttonAnimation, 
+  staggerContainer, 
+  fadeIn,
+  viewportConfig 
+} from '@/lib/animations';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -12,36 +19,34 @@ const Hero = () => {
     window.open(`https://wa.me/50760000000?text=${message}`, '_blank');
   };
 
-  // Get optimized Cloudinary video URLs
+  // Direct Cloudinary video URLs - Production ready
   const getVideoUrls = () => {
-    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-    if (cloudName) {
-      try {
-        const baseUrl = `https://res.cloudinary.com/${cloudName}/video/upload`;
-        return {
-          mp4: `${baseUrl}/f_mp4,q_auto:good,w_1920,c_limit/video/hero-video`,
-          webm: `${baseUrl}/f_webm,q_auto:good,w_1920,c_limit/video/hero-video`,
-          mobileMp4: `${baseUrl}/f_mp4,q_auto:good,w_768,c_limit/video/hero-video`,
-          mobileWebm: `${baseUrl}/f_webm,q_auto:good,w_768,c_limit/video/hero-video`
-        };
-      } catch (error) {
-        console.warn('Cloudinary video URLs failed to generate, using fallback:', error);
-      }
-    }
     return {
-      mp4: '/videos/hero-video.mp4',
-      webm: '/videos/hero-video.webm',
-      mobileMp4: '/videos/hero-video.mp4',
-      mobileWebm: '/videos/hero-video.webm'
+      // Primary video URLs from Cloudinary
+      mp4: 'https://res.cloudinary.com/dp3gvxyft/video/upload/v1757887943/hero-video_zuaiqj.mp4',
+      webm: 'https://res.cloudinary.com/dp3gvxyft/video/upload/v1757887943/hero-video_z1twn1.webm',
+      // Mobile optimized versions with quality and size adjustments
+      mobileMp4: 'https://res.cloudinary.com/dp3gvxyft/video/upload/w_768,q_auto:good/v1757887943/hero-video_zuaiqj.mp4',
+      mobileWebm: 'https://res.cloudinary.com/dp3gvxyft/video/upload/w_768,q_auto:good/v1757887943/hero-video_z1twn1.webm'
     };
   };
 
   const videoUrls = getVideoUrls();
 
   return (
-    <section className="hero-section">
+    <motion.section 
+      className="hero-section"
+      initial="hidden"
+      animate="visible"
+      variants={staggerContainer}
+    >
       {/* Video Background - Responsive Cloudinary Implementation */}
-      <div className="hero-video-bg">
+      <motion.div 
+        className="hero-video-bg"
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <video
           className="hero-video"
           autoPlay
@@ -50,8 +55,8 @@ const Hero = () => {
           playsInline
           preload="metadata"
           aria-hidden="true"
-          onError={() => {
-            console.warn('Cloudinary video failed to load, using fallback');
+          onError={(e) => {
+            console.warn('Primary video failed to load:', e);
           }}
         >
           {/* Desktop optimized sources */}
@@ -78,14 +83,10 @@ const Hero = () => {
             media="(max-width: 1023px)"
           />
           
-          {/* Fallback sources */}
-          <source src="/videos/hero-video.webm" type="video/webm" />
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
-          
           {/* Ultimate fallback for browsers that don't support video */}
-          <div className="w-full h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
+          <div className="w-full h-full bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900" />
         </video>
-      </div>
+      </motion.div>
       
       {/* Overlay */}
       <div className="hero-overlay" />
@@ -93,35 +94,90 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-20 section-container text-center text-white">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            {t('hero.title')}
-          </h1>
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.span 
+              className="block"
+              variants={heroTextReveal}
+              custom={0}
+            >
+              Cuidado Urológico Integral
+            </motion.span>
+            <motion.span 
+              className="block"
+              variants={heroTextReveal}
+              custom={1}
+            >
+              Con La Atención Que Usted Merece
+            </motion.span>
+          </motion.h1>
           
-          <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+          <motion.p 
+            className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed"
+            variants={fadeIn}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.6 }}
+          >
             {t('hero.subtitle')}
-          </p>
+          </motion.p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              className="btn-primary w-full sm:w-auto"
-              asChild
-            >
-              <a href="/contacto">
-                {t('hero.cta.primary')}
-              </a>
-            </Button>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={fadeIn}>
+              <motion.div
+                variants={buttonAnimation}
+                initial="rest"
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <Button 
+                  className="btn-primary w-full sm:w-auto group"
+                  asChild
+                >
+                  <a href="/contacto" className="inline-flex items-center">
+                    {t('hero.cta.primary')}
+                    <motion.div
+                      className="ml-2"
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.div>
+                  </a>
+                </Button>
+              </motion.div>
+            </motion.div>
             
-            <Button 
-              className="btn-whatsapp w-full sm:w-auto"
-              onClick={handleWhatsApp}
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              {t('hero.cta.whatsapp')}
-            </Button>
-          </div>
+            <motion.div variants={fadeIn}>
+              <motion.div
+                variants={buttonAnimation}
+                initial="rest"
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <Button 
+                  className="btn-whatsapp w-full sm:w-auto"
+                  onClick={handleWhatsApp}
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  {t('hero.cta.whatsapp')}
+                </Button>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
