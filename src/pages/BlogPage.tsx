@@ -108,14 +108,6 @@ const BlogPage = () => {
                 Educación urológica moderna para pacientes informados. 
                 Información basada en evidencia científica y experiencia clínica.
               </motion.p>
-              <motion.div
-                variants={fadeIn}
-                transition={{ delay: 0.4 }}
-              >
-                <Button size="lg" className="gap-2">
-                  Ver Último Artículo <ArrowRight className="w-5 h-5" />
-                </Button>
-              </motion.div>
             </div>
           </div>
         </motion.section>
