@@ -178,15 +178,43 @@
     }
   }
 
-  /* Mobile-specific video optimizations */
-  @media (max-width: 768px) {
+  /* Comprehensive tablet and mobile video optimizations */
+  @media (max-width: 1200px) {
     .hero-video {
-      /* Reduce quality on mobile to improve performance */
-      transform: translateZ(0) scale(1.01);
+      /* Optimize for all non-desktop sizes */
+      transform: translateZ(0) scale(1.01) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+    
+    .hero-video-bg {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      position: absolute !important;
+      inset: 0 !important;
+      z-index: 0 !important;
     }
     
     .hero-section {
       @apply min-h-[100vh]; /* Better mobile viewport handling */
+    }
+  }
+
+  /* Specific tablet range coverage */  
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .hero-video,
+    .hero-video-bg {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
     }
   }
 
@@ -248,11 +276,75 @@
     border-radius: 2px;
   }
 
-  /* Mobile visibility fallback - ensure content is never completely hidden */
-  @media (max-width: 768px) {
-    [data-framer-motion] {
+  /* Mobile and tablet visibility fallback - ensure content is never completely hidden */
+  @media (max-width: 1200px) {
+    /* Override ALL Framer Motion inline styles EXCEPT hero video */
+    [data-framer-motion]:not(.hero-video-bg):not(.hero-video),
+    section[style*="opacity: 0"]:not(.hero-section),
+    div[style*="opacity: 0"]:not(.hero-video-bg),
+    article[style*="opacity: 0"],
+    *[style*="opacity: 0"]:not(.hero-video):not(.hero-video-bg) {
       opacity: 1 !important;
       transform: none !important;
+      visibility: visible !important;
+    }
+    
+    /* AGGRESSIVE hero video override - nuclear option for all tablet sizes */
+    .hero-video-bg,
+    .hero-video,
+    .hero-section .hero-video-bg,
+    .hero-section .hero-video,
+    section .hero-video-bg,
+    section .hero-video {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      position: absolute !important;
+    }
+    
+    /* Force hero video container visibility */
+    .hero-video-bg[style*="opacity"],
+    .hero-video[style*="opacity"] {
+      opacity: 1 !important;
+    }
+    
+    /* Force blog content visibility on mobile */
+    section[class*="section-padding"],
+    .medical-card,
+    [class*="prose"],
+    .space-y-12 > div,
+    .grid > div,
+    article,
+    .max-w-none {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    
+    /* Ensure FAQ content is always visible */
+    .overflow-hidden {
+      overflow: visible !important;
+    }
+    
+    /* Specific fix for blog article content */
+    section.section-padding > div.section-container > div.grid > article {
+      opacity: 1 !important;
+      transform: translateY(0px) !important;
+      visibility: visible !important;
+    }
+    
+    /* Emergency visibility override - nuclear option */
+    * {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    /* Restore necessary hidden elements */
+    .hidden,
+    [style*="display: none"],
+    [aria-hidden="true"] {
+      opacity: 0 !important;
+      visibility: hidden !important;
     }
   }
 
@@ -274,11 +366,14 @@
     }
   }
 
-  /* Mobile-first responsive optimizations */
+  /* Mobile-first responsive optimizations - redundant but ensures coverage */
   @media (max-width: 768px) {
     .hero-video {
-      /* Slightly reduce quality on mobile for better performance */
-      transform: translateZ(0) scale(1.01);
+      /* Enhanced mobile video visibility */
+      transform: translateZ(0) scale(1.01) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
     }
   }
 

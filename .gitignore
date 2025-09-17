@@ -31,3 +31,15 @@ dist-ssr
 
 # Local development files
 start-dev.sh
+
+# Build caches and temporary files
+.vite
+.turbo
+*.tsbuildinfo
+
+# Production build verification
+dist-manual/
+build-report.html
+
+# Netlify deployment
+.netlify/

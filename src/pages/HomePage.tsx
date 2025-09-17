@@ -3,10 +3,11 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import StatsSection from '@/components/StatsSection';
 import ServicesSection from '@/components/ServicesSection';
+import FeatureSection from '@/components/FeatureSection';
 import BlogSection from '@/components/BlogSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
-import ContactForm from '@/components/ContactForm';
+import CTASection from '@/components/CTASection';
 import SEO from '@/components/SEO';
 import { 
   generatePersonSchema, 
@@ -41,10 +42,11 @@ const HomePage = () => {
         <Hero />
         <StatsSection />
         <ServicesSection />
+        <FeatureSection />
         <BlogSection />
         <WhyChooseSection />
         <TestimonialsSection />
-        <ContactForm />
+        <CTASection />
       </main>
     </div>
   );

@@ -10,7 +10,8 @@ import {
   fadeIn, 
   staggerContainer,
   scaleIn,
-  viewportConfig 
+  viewportConfig,
+  mobileViewportConfig 
 } from '@/lib/animations';
 
 const PreguntasFrecuentes = () => {

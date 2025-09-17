@@ -24,21 +24,21 @@ const Footer = () => {
                 {/* Desktop */}
                 <source
                   media="(min-width: 1024px)"
-                  srcSet="/logo-desktop.png 1x, /logo-desktop-2x.png 2x"
+                  srcSet="https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887222/logo-desktop_uz8qvb.png 1x, https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887223/logo-desktop-2x_gezmzg.png 2x"
                 />
                 {/* Tablet */}
                 <source
                   media="(min-width: 768px)"
-                  srcSet="/logo-tablet.png 1x, /logo-tablet-2x.png 2x"
+                  srcSet="https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887220/logo-tablet-2x_rodw5h.png"
                 />
                 {/* Mobile */}
                 <source
                   media="(max-width: 767px)"
-                  srcSet="/logo-mobile.png 1x, /logo-mobile-2x.png 2x"
+                  srcSet="https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887221/logo-mobile_kiu9br.png"
                 />
                 {/* Fallback */}
                 <img 
-                  src="/logo-desktop.png"
+                  src="https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887222/logo-desktop_uz8qvb.png"
                   alt="Dr. Javier del Rosario - Urólogo" 
                   className="h-10 w-auto md:h-12"
                 />

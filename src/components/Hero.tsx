@@ -46,6 +46,7 @@ const Hero = () => {
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{ opacity: 1, visibility: 'visible' }}
       >
         <video
           className="hero-video"
@@ -55,32 +56,28 @@ const Hero = () => {
           playsInline
           preload="metadata"
           aria-hidden="true"
+          style={{ opacity: 1, visibility: 'visible' }}
+          onLoadedData={() => {
+            console.log('Hero video loaded successfully');
+          }}
           onError={(e) => {
             console.warn('Primary video failed to load:', e);
           }}
         >
-          {/* Desktop optimized sources */}
+          {/* Primary video sources - works across all devices */}
           <source
             src={videoUrls.webm}
             type="video/webm"
-            media="(min-width: 1024px)"
           />
           <source
             src={videoUrls.mp4}
             type="video/mp4"
-            media="(min-width: 1024px)"
           />
           
-          {/* Mobile optimized sources */}
-          <source
-            src={videoUrls.mobileWebm}
-            type="video/webm"
-            media="(max-width: 1023px)"
-          />
+          {/* Fallback sources without media queries */}
           <source
             src={videoUrls.mobileMp4}
             type="video/mp4"
-            media="(max-width: 1023px)"
           />
           
           {/* Ultimate fallback for browsers that don't support video */}

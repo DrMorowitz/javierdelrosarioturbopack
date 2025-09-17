@@ -18,15 +18,15 @@ const CloudinaryLogo: React.FC<CloudinaryLogoProps> = ({
   // Check if Cloudinary is configured
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   
-  // If no cloud name or previous error, use local fallback
+  // If no cloud name or previous error, use direct Cloudinary fallback
   if (!cloudName || !useCloudinary || imageError) {
     return (
       <img 
-        src="/logo.png" 
+        src="https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887222/logo-desktop_uz8qvb.png" 
         alt={alt}
         className={className}
         onError={() => {
-          console.warn('Local logo fallback also failed');
+          console.warn('Cloudinary logo fallback also failed');
         }}
       />
     );
@@ -96,10 +96,10 @@ const CloudinaryLogo: React.FC<CloudinaryLogoProps> = ({
     );
   } catch (error) {
     console.warn('Cloudinary logo configuration failed, using local fallback:', error);
-    // Fallback to local asset
+    // Fallback to direct Cloudinary asset
     return (
       <img 
-        src="/logo.png" 
+        src="https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887222/logo-desktop_uz8qvb.png" 
         alt={alt}
         className={className}
       />
