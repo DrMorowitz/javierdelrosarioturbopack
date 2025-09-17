@@ -113,6 +113,20 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for fixed header */
+  }
+
+  /* Enhanced mobile scroll experience */
+  @media (max-width: 1023px) {
+    html {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+    
+    /* Smooth momentum scrolling for iOS */
+    body {
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   body {
@@ -278,12 +292,12 @@
 
   /* Mobile and tablet visibility fallback - ensure content is never completely hidden */
   @media (max-width: 1200px) {
-    /* Override ALL Framer Motion inline styles EXCEPT hero video */
-    [data-framer-motion]:not(.hero-video-bg):not(.hero-video),
+    /* Override ALL Framer Motion inline styles EXCEPT hero video and FAQ content */
+    [data-framer-motion]:not(.hero-video-bg):not(.hero-video):not(.faq-content),
     section[style*="opacity: 0"]:not(.hero-section),
-    div[style*="opacity: 0"]:not(.hero-video-bg),
+    div[style*="opacity: 0"]:not(.hero-video-bg):not(.faq-answer),
     article[style*="opacity: 0"],
-    *[style*="opacity: 0"]:not(.hero-video):not(.hero-video-bg) {
+    *[style*="opacity: 0"]:not(.hero-video):not(.hero-video-bg):not(.faq-answer) {
       opacity: 1 !important;
       transform: none !important;
       visibility: visible !important;
@@ -345,6 +359,22 @@
     [aria-hidden="true"] {
       opacity: 0 !important;
       visibility: hidden !important;
+    }
+    
+    /* Fix FAQ text overlay on mobile */
+    .prose.prose-sm {
+      transform: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      position: static !important;
+    }
+    
+    /* Ensure FAQ content doesn't stack */
+    .prose.prose-sm * {
+      transform: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      position: relative !important;
     }
   }
 

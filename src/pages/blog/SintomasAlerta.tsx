@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, AlertTriangle, Calendar, Clock, User, Phone } from 'lucide-react';
 import SEO from '@/components/SEO';
+import { useBlogScrollToHero } from '@/hooks/useScrollToTop';
 import { generateBreadcrumbSchema, generateArticleSchema } from '@/lib/schema';
 import { 
   fadeIn, 
@@ -14,6 +15,9 @@ import {
 } from '@/lib/animations';
 
 const SintomasAlerta = () => {
+  // Ensure page always starts at hero section top
+  useBlogScrollToHero();
+  
   // Generate schemas
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Inicio', url: '/' },

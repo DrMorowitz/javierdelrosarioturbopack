@@ -252,3 +252,60 @@ export const mobileViewportConfig = {
   margin: "0px", // No margin for mobile
   amount: 0.1,
 } as const;
+
+// Mobile-optimized animation configurations
+export const MOBILE_ANIMATION_CONFIG = {
+  duration: 0.4, // Faster animations
+  ease: "easeOut",
+  stiffness: 400,
+  damping: 25
+};
+
+export const DESKTOP_ANIMATION_CONFIG = {
+  duration: 0.8,
+  ease: [0.25, 0.1, 0.25, 1],
+  stiffness: 300,
+  damping: 20
+};
+
+// Mobile-safe animations with reduced motion
+export const mobileOptimizedFadeIn = {
+  hidden: { 
+    opacity: 0, 
+    y: 20 // Reduced distance
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: MOBILE_ANIMATION_CONFIG
+  }
+};
+
+export const mobileOptimizedSlideUp = {
+  hidden: { 
+    opacity: 0, 
+    y: 30 // Gentle slide
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: MOBILE_ANIMATION_CONFIG
+  }
+};
+
+export const mobileOptimizedScale = {
+  hidden: { 
+    opacity: 0, 
+    scale: 0.95 // Subtle scaling
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: MOBILE_ANIMATION_CONFIG
+  }
+};
+
+// Utility function to get appropriate animation config
+export const getAnimationConfig = (isMobile: boolean = false) => {
+  return isMobile ? MOBILE_ANIMATION_CONFIG : DESKTOP_ANIMATION_CONFIG;
+};

@@ -73,10 +73,10 @@ const StatsSection = () => {
     },
   ];
 
-  // Use simple div on mobile/low power devices for better compatibility
+  // Mobile-optimized version with selective animations
   if (isMobile || isLowPowerMode) {
     return (
-      <section className="section-padding bg-background">
+      <section ref={ref} className="section-padding bg-background">
         <div className="section-container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -88,17 +88,13 @@ const StatsSection = () => {
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div key={index} className="medical-card text-center">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                      <IconComponent className="service-icon w-8 h-8" />
-                    </div>
-                  </div>
-                  <div className="stat-number">{stat.number}{stat.suffix}</div>
-                  <p className="text-lg font-medium text-muted-foreground">
-                    {stat.text}
-                  </p>
-                </div>
+                <MobileStatCard 
+                  key={index} 
+                  stat={stat} 
+                  IconComponent={IconComponent} 
+                  index={index}
+                  isInView={isInView}
+                />
               );
             })}
           </div>
@@ -215,6 +211,42 @@ const StatCard = ({ stat, IconComponent, index, isInView }: {
         {stat.text}
       </p>
     </motion.div>
+  );
+};
+
+// Mobile-optimized stat card with counter animation
+const MobileStatCard = ({ stat, IconComponent, index, isInView }: {
+  stat: any;
+  IconComponent: any;
+  index: number;
+  isInView: boolean;
+}) => {
+  const { count, setIsVisible } = useCountUp(stat.number, 1.5); // Faster animation for mobile
+  
+  useEffect(() => {
+    if (isInView) {
+      const delay = index * 200; // Stagger animation
+      setTimeout(() => setIsVisible(true), delay);
+    }
+  }, [isInView, setIsVisible, index]);
+  
+  return (
+    <div className="medical-card text-center">
+      <div className="flex justify-center mb-4">
+        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
+          <IconComponent className="service-icon w-8 h-8" />
+        </div>
+      </div>
+      
+      {/* Animated counter for mobile */}
+      <div className="stat-number">
+        {count.toLocaleString()}{stat.suffix}
+      </div>
+      
+      <p className="text-lg font-medium text-muted-foreground">
+        {stat.text}
+      </p>
+    </div>
   );
 };
 

@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, HelpCircle, ChevronDown, ChevronUp, Calendar, User, DollarSign, Clock, Shield } from 'lucide-react';
 import SEO from '@/components/SEO';
+import { useBlogScrollToHero } from '@/hooks/useScrollToTop';
 import { generateFAQSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { 
   fadeIn, 
@@ -15,6 +16,9 @@ import {
 } from '@/lib/animations';
 
 const PreguntasFrecuentes = () => {
+  // Ensure page always starts at hero section top
+  useBlogScrollToHero();
+  
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Extract all FAQs for schema generation

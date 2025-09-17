@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, Calendar, Clock, User } from 'lucide-react';
 import SEO from '@/components/SEO';
+import { useBlogScrollToHero } from '@/hooks/useScrollToTop';
 import { 
   generateBreadcrumbSchema, 
   generateArticleSchema,
@@ -18,6 +19,9 @@ import {
 } from '@/lib/animations';
 
 const CondicionesComunes = () => {
+  // Ensure page always starts at hero section top
+  useBlogScrollToHero();
+  
   // Generate SEO schemas
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Inicio', url: '/' },

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Stethoscope, Calendar, Clock, User, Activity, Zap, Target, Scissors } from 'lucide-react';
+import { useBlogScrollToHero } from '@/hooks/useScrollToTop';
 import { 
   fadeIn, 
   staggerContainer,
@@ -12,6 +13,9 @@ import {
 } from '@/lib/animations';
 
 const Procedimientos = () => {
+  // Ensure page always starts at hero section top
+  useBlogScrollToHero();
+  
   const procedures = [
     {
       id: 1,
