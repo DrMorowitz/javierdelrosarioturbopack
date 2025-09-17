@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Award, Users, MapPin } from 'lucide-react';
@@ -88,7 +88,7 @@ const StatsSection = () => {
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <MobileStatCard 
+                <MobileStatCardWithFallback 
                   key={index} 
                   stat={stat} 
                   IconComponent={IconComponent} 
@@ -214,24 +214,71 @@ const StatCard = ({ stat, IconComponent, index, isInView }: {
   );
 };
 
-// Mobile-optimized stat card with counter animation
+// Mobile-optimized stat card with robust counter animation
 const MobileStatCard = ({ stat, IconComponent, index, isInView }: {
   stat: any;
   IconComponent: any;
   index: number;
   isInView: boolean;
 }) => {
-  const { count, setIsVisible } = useCountUp(stat.number, 1.5); // Faster animation for mobile
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
   
+  // Create our own intersection observer for more reliable detection
   useEffect(() => {
-    if (isInView) {
-      const delay = index * 200; // Stagger animation
-      setTimeout(() => setIsVisible(true), delay);
-    }
-  }, [isInView, setIsVisible, index]);
+    if (!cardRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          // Start counter animation
+          const delay = index * 300; // Stagger timing
+          setTimeout(() => {
+            animateCounter();
+          }, delay);
+        }
+      },
+      {
+        threshold: 0.5, // Trigger when 50% visible
+        rootMargin: '0px'
+      }
+    );
+    
+    observer.observe(cardRef.current);
+    
+    return () => observer.disconnect();
+  }, [index, hasAnimated]);
+  
+  const animateCounter = () => {
+    if (hasAnimated) return;
+    setHasAnimated(true);
+    
+    const duration = 1500; // 1.5 seconds
+    const startTime = Date.now();
+    const startValue = 0;
+    const endValue = stat.number;
+    
+    const updateCounter = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Ease out animation
+      const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(startValue + (endValue - startValue) * easeOutProgress);
+      
+      setCount(currentValue);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    };
+    
+    requestAnimationFrame(updateCounter);
+  };
   
   return (
-    <div className="medical-card text-center">
+    <div ref={cardRef} className="medical-card text-center">
       <div className="flex justify-center mb-4">
         <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
           <IconComponent className="service-icon w-8 h-8" />
@@ -246,6 +293,103 @@ const MobileStatCard = ({ stat, IconComponent, index, isInView }: {
       <p className="text-lg font-medium text-muted-foreground">
         {stat.text}
       </p>
+    </div>
+  );
+};
+
+// Fallback mobile component with animation attempt and static fallback
+const MobileStatCardWithFallback = ({ stat, IconComponent, index, isInView }: {
+  stat: any;
+  IconComponent: any;
+  index: number;
+  isInView: boolean;
+}) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [showStatic, setShowStatic] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  // Fallback timer - if animation doesn't start within 3 seconds, show static
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      if (!hasAnimated && count === 0) {
+        setShowStatic(true);
+        setCount(stat.number); // Show final number immediately
+      }
+    }, 3000);
+    
+    return () => clearTimeout(fallbackTimer);
+  }, [stat.number, hasAnimated, count]);
+  
+  // Intersection observer for animation trigger
+  useEffect(() => {
+    if (!cardRef.current || showStatic) return;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          const delay = index * 300;
+          setTimeout(() => {
+            animateCounter();
+          }, delay);
+        }
+      },
+      {
+        threshold: 0.3, // Lower threshold for better mobile detection
+        rootMargin: '50px'
+      }
+    );
+    
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, [index, hasAnimated, showStatic]);
+  
+  const animateCounter = () => {
+    if (hasAnimated || showStatic) return;
+    setHasAnimated(true);
+    
+    const duration = 1500;
+    const startTime = Date.now();
+    const endValue = stat.number;
+    
+    const updateCounter = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(endValue * easeOutProgress);
+      
+      setCount(currentValue);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    };
+    
+    requestAnimationFrame(updateCounter);
+  };
+  
+  return (
+    <div ref={cardRef} className="medical-card text-center">
+      <div className="flex justify-center mb-4">
+        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
+          <IconComponent className="service-icon w-8 h-8" />
+        </div>
+      </div>
+      
+      <div className="stat-number">
+        {count.toLocaleString()}{stat.suffix}
+      </div>
+      
+      <p className="text-lg font-medium text-muted-foreground">
+        {stat.text}
+      </p>
+      
+      {/* Debug info in development */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="text-xs text-muted-foreground mt-2">
+          {showStatic ? 'Static' : hasAnimated ? 'Animated' : 'Waiting...'}
+        </div>
+      )}
     </div>
   );
 };
