@@ -356,6 +356,7 @@ const PreguntasFrecuentes = () => {
 
         {/* Hero Section */}
         <motion.section 
+          id="hero"
           className="section-padding bg-gradient-to-r from-orange-50 to-yellow-50"
           initial="hidden"
           animate="visible"

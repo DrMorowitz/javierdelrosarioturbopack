@@ -220,6 +220,7 @@ const CondicionesComunes = () => {
 
         {/* Hero Section */}
         <motion.section 
+          id="hero"
           className="section-padding bg-gradient-to-r from-blue-50 to-blue-100"
           initial="hidden"
           animate="visible"

@@ -28,7 +28,7 @@ const BlogPage = () => {
       articleCount: 8,
       color: 'bg-blue-500',
       icon: BookOpen,
-      route: '/blog/condiciones-comunes',
+      route: '/blog/condiciones-comunes#hero',
       image: 'https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887943/blog-condiciones_abc123.jpg'
     },
     {
@@ -38,7 +38,7 @@ const BlogPage = () => {
       articleCount: 6,
       color: 'bg-red-500',
       icon: Calendar,
-      route: '/blog/sintomas-alerta',
+      route: '/blog/sintomas-alerta#hero',
       image: 'https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887943/blog-sintomas_def456.jpg'
     },
     {
@@ -48,7 +48,7 @@ const BlogPage = () => {
       articleCount: 10,
       color: 'bg-green-500',
       icon: User,
-      route: '/blog/prevencion',
+      route: '/blog/prevencion#hero',
       image: 'https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887943/blog-prevencion_ghi789.jpg'
     },
     {
@@ -58,7 +58,7 @@ const BlogPage = () => {
       articleCount: 12,
       color: 'bg-purple-500',
       icon: BookOpen,
-      route: '/blog/procedimientos',
+      route: '/blog/procedimientos#hero',
       image: 'https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887943/blog-procedimientos_jkl012.jpg'
     },
     {
@@ -68,7 +68,7 @@ const BlogPage = () => {
       articleCount: 15,
       color: 'bg-orange-500',
       icon: Calendar,
-      route: '/blog/preguntas-frecuentes',
+      route: '/blog/preguntas-frecuentes#hero',
       image: 'https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887943/blog-faq_mno345.jpg'
     }
   ];

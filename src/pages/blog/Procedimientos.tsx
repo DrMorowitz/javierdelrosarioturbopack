@@ -233,6 +233,7 @@ const Procedimientos = () => {
 
         {/* Hero Section */}
         <motion.section 
+          id="hero"
           className="section-padding bg-gradient-to-r from-purple-50 to-indigo-50"
           initial="hidden"
           animate="visible"

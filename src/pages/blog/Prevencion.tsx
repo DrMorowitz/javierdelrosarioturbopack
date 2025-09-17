@@ -163,6 +163,7 @@ const Prevencion = () => {
 
         {/* Hero Section */}
         <motion.section 
+          id="hero"
           className="section-padding bg-gradient-to-r from-green-50 to-emerald-50"
           initial="hidden"
           animate="visible"

@@ -179,6 +179,7 @@ const SintomasAlerta = () => {
 
         {/* Hero Section */}
         <motion.section 
+          id="hero"
           className="section-padding bg-gradient-to-r from-red-50 to-orange-50"
           initial="hidden"
           animate="visible"
