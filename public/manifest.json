@@ -10,13 +10,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "https://res.cloudinary.com/dp3gvxyft/image/upload/c_scale,w_192,h_192,f_auto,q_auto/favicon/favicon-192x192.png",
+      "src": "https://res.cloudinary.com/dp3gvxyft/image/upload/c_scale,w_192,h_192,f_auto,q_auto/v1757887052/android-chrome-512x512_qiefcd.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "https://res.cloudinary.com/dp3gvxyft/image/upload/c_scale,w_512,h_512,f_auto,q_auto/favicon/favicon-512x512.png",
+      "src": "https://res.cloudinary.com/dp3gvxyft/image/upload/v1757887052/android-chrome-512x512_qiefcd.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
