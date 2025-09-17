@@ -488,12 +488,16 @@ const PreguntasFrecuentes = () => {
                               initial={false}
                               animate={{ height: isOpen ? 'auto' : 0 }}
                               transition={{ duration: 0.3, ease: 'easeInOut' }}
-                              className="overflow-hidden"
+                              className="overflow-hidden faq-accordion-content"
                             >
                               <div className="px-6 pb-6">
                                 <div 
                                   className="prose prose-sm max-w-none text-muted-foreground leading-relaxed"
-                                  style={{ whiteSpace: 'pre-line', position: 'relative', zIndex: 10 }}
+                                  style={{ 
+                                    whiteSpace: 'pre-line',
+                                    lineHeight: '1.6',
+                                    fontSize: '0.9rem'
+                                  }}
                                   dangerouslySetInnerHTML={{ __html: faq.answer }}
                                 />
                               </div>

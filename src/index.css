@@ -325,18 +325,16 @@
     /* Force blog content visibility on mobile */
     section[class*="section-padding"],
     .medical-card,
-    [class*="prose"],
     .space-y-12 > div,
     .grid > div,
-    article,
-    .max-w-none {
+    article {
       opacity: 1 !important;
       transform: none !important;
       visibility: visible !important;
     }
     
-    /* Ensure FAQ content is always visible */
-    .overflow-hidden {
+    /* Ensure FAQ content is always visible but preserve accordion animation */
+    .overflow-hidden:not(.faq-accordion-content) {
       overflow: visible !important;
     }
     
@@ -356,13 +354,18 @@
       visibility: hidden !important;
     }
     
-    /* Fix FAQ text overlay on mobile */
-    .prose.prose-sm {
-      transform: none !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      position: static !important;
+    /* Fix FAQ text positioning on mobile/tablet */
+    .faq-accordion-content .prose.prose-sm {
+      position: relative;
       z-index: 1;
+      transform: none;
+      line-height: 1.6;
+    }
+    
+    /* Ensure FAQ prose content doesn't have conflicting styles */
+    .faq-accordion-content .prose.prose-sm * {
+      position: static;
+      transform: none;
     }
   }
 
