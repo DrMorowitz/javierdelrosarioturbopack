@@ -29,9 +29,9 @@ const PreguntasFrecuentes = () => {
           question: '¿Cuánto cobra un urólogo en Panamá?',
           answer: `Los costos de consulta urológica en Panamá varían según la complejidad:
           
-          **Consulta inicial:** $80-120
-          **Consulta de seguimiento:** $60-80
-          **Consulta con estudios:** $100-150
+          <strong>Consulta inicial:</strong> $80-120
+          <strong>Consulta de seguimiento:</strong> $60-80
+          <strong>Consulta con estudios:</strong> $100-150
           
           Los precios pueden variar según la ubicación, experiencia del médico y si requiere estudios adicionales como ecografía o cistoscopia.`
         },
@@ -39,28 +39,28 @@ const PreguntasFrecuentes = () => {
           question: '¿Los seguros médicos cubren consultas urológicas?',
           answer: `La mayoría de seguros médicos en Panamá cubren consultas urológicas cuando son referidas por médico general:
           
-          **Seguros que típicamente cubren:**
+          <strong>Seguros que típicamente cubren:</strong>
           • Seguros del Estado (CSS, MINSA)
           • Seguros privados con cobertura médica especializada
           • Pólizas empresariales con medicina especializada
           
-          **Recomendación:** Verificar cobertura antes de la cita y llevar referencia médica cuando sea requerida.`
+          <strong>Recomendación:</strong> Verificar cobertura antes de la cita y llevar referencia médica cuando sea requerida.`
         },
         {
           question: '¿Qué incluye una consulta urológica completa?',
           answer: `Una consulta urológica integral incluye:
           
-          **Historia clínica detallada:**
+          <strong>Historia clínica detallada:</strong>
           • Síntomas actuales y evolución
           • Antecedentes médicos y quirúrgicos
           • Medicamentos y alergias
           
-          **Examen físico:**
+          <strong>Examen físico:</strong>
           • Examen abdominal
           • Examen genital externo
           • Tacto rectal (cuando está indicado)
           
-          **Estudios complementarios si necesarios:**
+          <strong>Estudios complementarios si necesarios:</strong>
           • Ecografía urológica
           • Análisis de orina
           • Estudios de función renal`
@@ -76,19 +76,19 @@ const PreguntasFrecuentes = () => {
           question: '¿Cuándo es necesario consultar a un urólogo?',
           answer: `Debe consultar a un urólogo cuando presente:
           
-          **Síntomas de alarma inmediatos:**
+          <strong>Síntomas de alarma inmediatos:</strong>
           • Sangre en la orina (hematuria)
           • Dolor intenso en flancos o abdomen bajo
           • Dificultad completa para orinar
           • Dolor testicular súbito
           
-          **Síntomas que requieren evaluación:**
+          <strong>Síntomas que requieren evaluación:</strong>
           • Ardor al orinar persistente
           • Levantarse frecuentemente a orinar de noche
           • Chorro urinario débil o interrumpido
           • Dolor pélvico crónico
           
-          **Chequeos preventivos:**
+          <strong>Chequeos preventivos:</strong>
           • Hombres mayores de 50 años (45 si hay antecedentes familiares)
           • Evaluación anual de próstata y función renal`
         },
@@ -96,23 +96,23 @@ const PreguntasFrecuentes = () => {
           question: '¿Qué enfermedades detecta un urólogo?',
           answer: `Los urólogos diagnostican y tratan:
           
-          **Condiciones renales:**
+          <strong>Condiciones renales:</strong>
           • Cálculos renales
           • Infecciones renales
           • Quistes renales
           • Cáncer de riñón
           
-          **Problemas prostáticos:**
+          <strong>Problemas prostáticos:</strong>
           • Hiperplasia prostática benigna (HPB)
           • Prostatitis
           • Cáncer de próstata
           
-          **Condiciones de vejiga:**
+          <strong>Condiciones de vejiga:</strong>
           • Infecciones urinarias recurrentes
           • Cáncer de vejiga
           • Incontinencia urinaria
           
-          **Problemas sexuales masculinos:**
+          <strong>Problemas sexuales masculinos:</strong>
           • Disfunción eréctil
           • Eyaculación precoz
           • Infertilidad masculina`
@@ -121,17 +121,17 @@ const PreguntasFrecuentes = () => {
           question: '¿Es normal tener sangre en la orina?',
           answer: `La sangre en la orina NUNCA es normal y siempre requiere evaluación médica.
           
-          **Hematuria visible (orina roja o rosada):**
+          <strong>Hematuria visible (orina roja o rosada):</strong>
           • Requiere consulta inmediata
           • Puede indicar cálculos, infección o cáncer
           • No ignorar aunque no haya dolor
           
-          **Hematuria microscópica:**
+          <strong>Hematuria microscópica:</strong>
           • Solo detectada en exámenes de laboratorio
           • También requiere evaluación urológica
           • Puede ser primer signo de enfermedad
           
-          **Posibles causas:**
+          <strong>Posibles causas:</strong>
           • Cálculos renales o ureterales
           • Infecciones del tracto urinario
           • Cáncer de vejiga, riñón o próstata
@@ -149,18 +149,18 @@ const PreguntasFrecuentes = () => {
           question: '¿Qué se hace en la primera cita con el urólogo?',
           answer: `En su primera consulta urológica:
           
-          **Antes de la cita:**
+          <strong>Antes de la cita:</strong>
           • Traer resultados de estudios previos
           • Lista de medicamentos actuales
           • Historia de síntomas y su evolución
           
-          **Durante la consulta:**
+          <strong>Durante la consulta:</strong>
           • Historia clínica detallada (30-45 minutos)
           • Examen físico apropiado según síntomas
           • Explicación clara de hallazgos
           • Plan de estudios adicionales si necesarios
           
-          **Al final de la consulta:**
+          <strong>Al final de la consulta:</strong>
           • Diagnóstico preliminar o diferencial
           • Plan de tratamiento explicado
           • Próxima cita programada
@@ -170,40 +170,40 @@ const PreguntasFrecuentes = () => {
           question: '¿La vasectomía es reversible?',
           answer: `La vasectomía puede revertirse, pero es un procedimiento más complejo:
           
-          **Reversión de vasectomía:**
+          <strong>Reversión de vasectomía:</strong>
           • Cirugía microscópica de 2-4 horas
           • Tasa de éxito: 70-90% para permeabilidad
           • Tasa de embarazo: 50-70%
           • Costo: 3-5 veces más que vasectomía original
           
-          **Factores que afectan el éxito:**
+          <strong>Factores que afectan el éxito:</strong>
           • Tiempo transcurrido desde la vasectomía
           • Técnica original utilizada
           • Presencia de anticuerpos antiesperma
           
-          **Alternativas:**
+          <strong>Alternativas:</strong>
           • Fertilización in vitro con aspiración espermática
           • Congelación de esperma antes de vasectomía
           
-          **Recomendación:** Considerar la vasectomía como permanente al tomar la decisión.`
+          <strong>Recomendación:</strong> Considerar la vasectomía como permanente al tomar la decisión.`
         },
         {
           question: '¿Duele la biopsia de próstata?',
           answer: `La biopsia prostática causa molestias tolerables con preparación adecuada:
           
-          **Durante el procedimiento:**
+          <strong>Durante el procedimiento:</strong>
           • Anestesia local en área perineal
           • Molestia durante inserción de la aguja
           • Procedimiento dura 10-15 minutos
           • La mayoría de pacientes lo toleran bien
           
-          **Después del procedimiento:**
+          <strong>Después del procedimiento:</strong>
           • Sangrado rectal leve por 1-2 días
           • Sangre en orina por 2-3 días
           • Sangre en semen hasta por 4 semanas
           • Analgésicos simples controlan molestias
           
-          **Para minimizar molestias:**
+          <strong>Para minimizar molestias:</strong>
           • Enema de limpieza previa
           • Antibiótico profiláctico
           • Analgésico 1 hora antes
@@ -220,19 +220,19 @@ const PreguntasFrecuentes = () => {
           question: '¿Cómo prevenir cálculos renales en el clima de Panamá?',
           answer: `En el clima tropical de Panamá es especialmente importante:
           
-          **Hidratación adecuada:**
+          <strong>Hidratación adecuada:</strong>
           • Beber 2.5-3 litros de agua diarios
           • Aumentar durante ejercicio y exposición al sol
           • Orina debe ser amarillo claro
           • Evitar bebidas azucaradas en exceso
           
-          **Modificaciones dietéticas:**
+          <strong>Modificaciones dietéticas:</strong>
           • Reducir sal a menos de 2.3g diarios
           • Limitar oxalatos: espinacas, nueces, té negro
           • Consumir calcio de fuentes alimentarias
           • Reducir proteína animal excesiva
           
-          **En el trópico específicamente:**
+          <strong>En el trópico específicamente:</strong>
           • Reponer electrolitos durante ejercicio intenso
           • Beber agua antes de sentir sed
           • Considerar suplemento de citrato si hay antecedentes
@@ -242,21 +242,21 @@ const PreguntasFrecuentes = () => {
           question: '¿Con qué frecuencia debo hacerme chequeos urológicos?',
           answer: `Frecuencia recomendada según edad y factores de riesgo:
           
-          **20-40 años (sin síntomas):**
+          <strong>20-40 años (sin síntomas):</strong>
           • Cada 2-3 años si no hay antecedentes
           • Anual si hay antecedentes familiares
           
-          **40-50 años:**
+          <strong>40-50 años:</strong>
           • Cada 1-2 años
           • Inicio de screening prostático
           • Evaluación de función renal
           
-          **50+ años:**
+          <strong>50+ años:</strong>
           • Anualmente
           • PSA y tacto rectal
           • Ecografía prostática y renal
           
-          **Factores que aumentan frecuencia:**
+          <strong>Factores que aumentan frecuencia:</strong>
           • Antecedentes familiares de cáncer urológico
           • Diabetes o hipertensión
           • Historia de cálculos renales
@@ -266,25 +266,25 @@ const PreguntasFrecuentes = () => {
           question: '¿Los problemas de próstata siempre requieren cirugía?',
           answer: `No, la mayoría de problemas prostáticos se manejan inicialmente con tratamiento médico:
           
-          **Hiperplasia Prostática Benigna (HPB):**
+          <strong>Hiperplasia Prostática Benigna (HPB):</strong>
           
-          **Tratamiento médico (primera línea):**
+          <strong>Tratamiento médico (primera línea):</strong>
           • Alfabloqueadores (tamsulosina, doxazosina)
           • Inhibidores de 5-alfa reductasa (finasteride)
           • Combinaciones de medicamentos
           • 70-80% mejoran con medicamentos
           
-          **Tratamientos mínimamente invasivos:**
+          <strong>Tratamientos mínimamente invasivos:</strong>
           • Terapia Rezum (vapor de agua)
           • Láser prostático
           • Embolización de arterias prostáticas
           
-          **Cirugía (cuando otros fallan):**
+          <strong>Cirugía (cuando otros fallan):</strong>
           • RTU prostática
           • Prostatectomía simple
           • Solo 10-15% requieren cirugía
           
-          **El tratamiento se escoge según:**
+          <strong>El tratamiento se escoge según:</strong>
           • Severidad de síntomas
           • Tamaño de la próstata
           • Edad y condición general del paciente
@@ -488,9 +488,8 @@ const PreguntasFrecuentes = () => {
                                 <div 
                                   className="prose prose-sm max-w-none text-muted-foreground"
                                   style={{ whiteSpace: 'pre-line' }}
-                                >
-                                  {faq.answer}
-                                </div>
+                                  dangerouslySetInnerHTML={{ __html: faq.answer }}
+                                />
                               </div>
                             </motion.div>
                           </div>
