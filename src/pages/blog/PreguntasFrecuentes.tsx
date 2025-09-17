@@ -492,8 +492,8 @@ const PreguntasFrecuentes = () => {
                             >
                               <div className="px-6 pb-6">
                                 <div 
-                                  className="prose prose-sm max-w-none text-muted-foreground"
-                                  style={{ whiteSpace: 'pre-line' }}
+                                  className="prose prose-sm max-w-none text-muted-foreground leading-relaxed"
+                                  style={{ whiteSpace: 'pre-line', position: 'relative', zIndex: 10 }}
                                   dangerouslySetInnerHTML={{ __html: faq.answer }}
                                 />
                               </div>

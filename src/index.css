@@ -347,11 +347,6 @@
       visibility: visible !important;
     }
     
-    /* Emergency visibility override - nuclear option */
-    * {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
     
     /* Restore necessary hidden elements */
     .hidden,
@@ -367,14 +362,7 @@
       opacity: 1 !important;
       visibility: visible !important;
       position: static !important;
-    }
-    
-    /* Ensure FAQ content doesn't stack */
-    .prose.prose-sm * {
-      transform: none !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      position: relative !important;
+      z-index: 1;
     }
   }
 
