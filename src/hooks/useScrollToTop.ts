@@ -1,5 +1,7 @@
+'use client';
+
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 /**
  * Custom hook that scrolls to top when component mounts or route changes
@@ -10,14 +12,16 @@ export const useScrollToTop = (options?: {
   delay?: number;
   offset?: number;
 }) => {
-  const location = useLocation();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { behavior = 'smooth', delay = 0, offset = 0 } = options || {};
 
   useEffect(() => {
     const scrollToTop = () => {
       // Check if there's a hash in the URL (like #hero)
-      if (location.hash) {
-        const targetElement = document.querySelector(location.hash);
+      const hash = window.location.hash;
+      if (hash) {
+        const targetElement = document.querySelector(hash);
         if (targetElement) {
           // Calculate position accounting for fixed header
           const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
@@ -44,7 +48,7 @@ export const useScrollToTop = (options?: {
     } else {
       scrollToTop();
     }
-  }, [location, behavior, delay, offset]);
+  }, [pathname, searchParams, behavior, delay, offset]);
 };
 
 /**

@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Shield, Droplets, Heart, Activity, Calendar, User, CheckCircle } from 'lucide-react';
@@ -156,9 +158,9 @@ const Prevencion = () => {
         >
           <div className="section-container">
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-primary">Inicio</Link>
+              <Link href="/" className="hover:text-primary">Inicio</Link>
               <span>/</span>
-              <Link to="/blog" className="hover:text-primary">Blog</Link>
+              <Link href="/blog" className="hover:text-primary">Blog</Link>
               <span>/</span>
               <span className="text-foreground">Prevención y Cuidado</span>
             </nav>
@@ -181,7 +183,7 @@ const Prevencion = () => {
                 transition={{ delay: 0.1 }}
               >
                 <Button variant="ghost" size="sm" asChild>
-                  <Link to="/blog" className="gap-2">
+                  <Link href="/blog" className="gap-2">
                     <ArrowLeft className="w-4 h-4" />
                     Volver al Blog
                   </Link>
@@ -404,7 +406,7 @@ const Prevencion = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <Link to="/contacto">
+                  <Link href="/contacto">
                     Agendar Chequeo Preventivo
                   </Link>
                 </Button>

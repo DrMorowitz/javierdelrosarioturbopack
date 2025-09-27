@@ -1,23 +1,17 @@
 [build]
   command = "npm run build"
-  publish = "dist"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "22"
   NPM_VERSION = "10.9.2"
 
-# Environment variables for Cloudinary
+# Environment variables for Next.js (changed from VITE_ to NEXT_PUBLIC_)
 [context.production.environment]
-  VITE_CLOUDINARY_CLOUD_NAME = "dp3gvxyft"
-  VITE_CLOUDINARY_LOGO_FOLDER = "logos"
-  VITE_CLOUDINARY_VIDEO_FOLDER = "video"
-  VITE_CLOUDINARY_FAVICON_FOLDER = "favicon"
-
-# Redirect rules for SPA routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME = "dp3gvxyft"
+  NEXT_PUBLIC_CLOUDINARY_LOGO_FOLDER = "logos"
+  NEXT_PUBLIC_CLOUDINARY_VIDEO_FOLDER = "video"
+  NEXT_PUBLIC_CLOUDINARY_FAVICON_FOLDER = "favicon"
 
 # Headers for performance optimization
 [[headers]]

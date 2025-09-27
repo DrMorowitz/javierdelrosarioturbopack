@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { BookOpen, AlertTriangle, Shield, Stethoscope, HelpCircle, ArrowRight } from 'lucide-react';
 import { 
@@ -94,7 +96,7 @@ const BlogSection = () => {
                     </div>
                   </div>
                   
-                  <Link to={category.route}>
+                  <Link href={category.route}>
                     <Button variant="ghost" className="w-full justify-start p-0 text-primary hover:text-primary-hover group">
                       Leer más
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -106,7 +108,7 @@ const BlogSection = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/blog">
+            <Link href="/blog">
               <Button size="lg" className="gap-2">
                 {t('blog.visit.blog')}
                 <ArrowRight className="w-5 h-5" />

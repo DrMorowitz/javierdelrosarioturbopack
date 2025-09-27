@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 import Header from '@/components/Header';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Award, Users, MapPin, GraduationCap, Globe2, Heart } from 'lucide-react';
 
 const AboutPage = () => {
@@ -102,7 +104,7 @@ const AboutPage = () => {
                 <p className="text-xl text-muted-foreground mb-8">
                   {currentContent.subtitle}
                 </p>
-                <Link to="/servicios">
+                <Link href="/servicios">
                   <Button className="btn-primary">
                     {currentContent.cta}
                   </Button>
@@ -202,7 +204,7 @@ const AboutPage = () => {
               ¿Listo para tu Consulta?
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contacto">
+              <Link href="/contacto">
                 <Button className="btn-primary">
                   Agendar Consulta
                 </Button>

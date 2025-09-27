@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -11,13 +13,14 @@ import {
   scaleIn,
   viewportConfig 
 } from '@/lib/animations';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: "Procedimientos Urológicos Explicados Paso a Paso - Dr. Javier del Rosario",
-  description: "Información detallada sobre los procedimientos urológicos más comunes. Comprende qué esperar antes, durante y después de tu tratamiento.",
-  keywords: "vasectomía panamá, ureteroscopia panama, laser calculos renales, terapia rezum panama, procedimientos urológicos",
-};
+// Metadata cannot be exported from client components in Next.js
+// export const metadata: Metadata = {
+//   title: "Procedimientos Urológicos Explicados Paso a Paso - Dr. Javier del Rosario",
+//   description: "Información detallada sobre los procedimientos urológicos más comunes. Comprende qué esperar antes, durante y después de tu tratamiento.",
+//   keywords: "vasectomía panamá, ureteroscopia panama, laser calculos renales, terapia rezum panama, procedimientos urológicos",
+// };
 
 const Procedimientos = () => {
   const procedures = [

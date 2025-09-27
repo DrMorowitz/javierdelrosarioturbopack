@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -12,13 +14,14 @@ import {
   scaleIn,
   viewportConfig 
 } from '@/lib/animations';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: "Preguntas Frecuentes sobre Urología en Panamá - Dr. Javier del Rosario",
-  description: "Respuestas a las preguntas más frecuentes sobre consultas urológicas en Panamá: costos, síntomas, procedimientos y prevención. Información médica confiable del Dr. del Rosario.",
-  keywords: "cuánto cobra urólogo panamá, cuándo consultar urólogo, qué hace urólogo, preguntas frecuentes urología, consulta urológica panamá, precios urología",
-};
+// Metadata cannot be exported from client components in Next.js
+// export const metadata: Metadata = {
+//   title: "Preguntas Frecuentes sobre Urología en Panamá - Dr. Javier del Rosario",
+//   description: "Respuestas a las preguntas más frecuentes sobre consultas urológicas en Panamá: costos, síntomas, procedimientos y prevención. Información médica confiable del Dr. del Rosario.",
+//   keywords: "cuánto cobra urólogo panamá, cuándo consultar urólogo, qué hace urólogo, preguntas frecuentes urología, consulta urológica panamá, precios urología",
+// };
 
 const PreguntasFrecuentes = () => {
 

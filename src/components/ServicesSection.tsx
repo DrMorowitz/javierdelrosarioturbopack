@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Activity, Zap, Target, ScanLine, ArrowRight } from 'lucide-react';
 import { 
@@ -73,7 +75,7 @@ const ServicesSection = () => {
                     </p>
                   </div>
                   
-                  <Link to="/servicios">
+                  <Link href="/servicios">
                     <Button variant="ghost" className="w-full justify-start p-0 text-primary hover:text-primary-hover group">
                       {t('services.learn.more')} 
                       <ArrowRight className="w-4 h-4 ml-2" />

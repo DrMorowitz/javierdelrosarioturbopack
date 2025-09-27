@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -11,13 +13,14 @@ import {
   scaleIn,
   viewportConfig 
 } from '@/lib/animations';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: "Prevención y Cuidado de la Salud Urológica - Dr. Javier del Rosario",
-  description: "La prevención es la mejor medicina. Descubre cómo mantener una salud urológica óptima con hábitos de vida saludables y controles médicos apropiados.",
-  keywords: "prevención urológica, cuidados próstata, prevenir cálculos renales, salud masculina panamá, chequeos urológicos",
-};
+// Metadata cannot be exported from client components in Next.js
+// export const metadata: Metadata = {
+//   title: "Prevención y Cuidado de la Salud Urológica - Dr. Javier del Rosario",
+//   description: "La prevención es la mejor medicina. Descubre cómo mantener una salud urológica óptima con hábitos de vida saludables y controles médicos apropiados.",
+//   keywords: "prevención urológica, cuidados próstata, prevenir cálculos renales, salud masculina panamá, chequeos urológicos",
+// };
 
 const Prevencion = () => {
   const preventionAreas = [

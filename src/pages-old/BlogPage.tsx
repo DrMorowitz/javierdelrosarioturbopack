@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, User, BookOpen } from 'lucide-react';
@@ -145,7 +147,7 @@ const BlogPage = () => {
                     whileHover={{ y: -8 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
-                    <Link to={category.route} className="block">
+                    <Link href={category.route} className="block">
                       <div className="relative mb-6 overflow-hidden rounded-lg">
                         <div className={`${category.color} h-48 flex items-center justify-center`}>
                           <IconComponent className="w-16 h-16 text-white" />
@@ -196,7 +198,7 @@ const BlogPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <Link to="/contacto">
+                  <Link href="/contacto">
                     Agendar Consulta
                   </Link>
                 </Button>

@@ -1,5 +1,3 @@
-"use client";
-
 const CondicionesComunes = () => {
   return (
     <div className="min-h-screen p-8">

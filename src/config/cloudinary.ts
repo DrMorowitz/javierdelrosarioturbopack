@@ -6,15 +6,15 @@ import { format, quality } from '@cloudinary/url-gen/actions/delivery';
 // Initialize Cloudinary instance
 export const cloudinary = new Cloudinary({
   cloud: {
-    cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+    cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
   }
 });
 
 // Folder paths
 export const CLOUDINARY_FOLDERS = {
-  logos: import.meta.env.VITE_CLOUDINARY_LOGO_FOLDER || 'logos',
-  videos: import.meta.env.VITE_CLOUDINARY_VIDEO_FOLDER || 'video',
-  favicons: import.meta.env.VITE_CLOUDINARY_FAVICON_FOLDER || 'favicon'
+  logos: process.env.NEXT_PUBLIC_CLOUDINARY_LOGO_FOLDER || 'logos',
+  videos: process.env.NEXT_PUBLIC_CLOUDINARY_VIDEO_FOLDER || 'video',
+  favicons: process.env.NEXT_PUBLIC_CLOUDINARY_FAVICON_FOLDER || 'favicon'
 };
 
 // Helper functions for common transformations

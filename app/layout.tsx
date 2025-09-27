@@ -63,18 +63,18 @@ export default function RootLayout({
         <link rel="preload" href="/logo-desktop.png" as="image" type="image/png" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <QueryWrapper>
+        {/* <QueryWrapper> */}
           <LanguageProvider>
-            <TooltipProvider>
+            {/* <TooltipProvider> */}
               <div className="min-h-screen flex flex-col">
                 {children}
-                <Footer />
+                {/* <Footer /> */}
               </div>
-              <Toaster />
-              <Sonner />
-            </TooltipProvider>
+              {/* <Toaster />
+              <Sonner /> */}
+            {/* </TooltipProvider> */}
           </LanguageProvider>
-        </QueryWrapper>
+        {/* </QueryWrapper> */}
       </body>
     </html>
   );

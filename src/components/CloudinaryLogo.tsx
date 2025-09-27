@@ -16,7 +16,7 @@ const CloudinaryLogo: React.FC<CloudinaryLogoProps> = ({
   const [imageError, setImageError] = useState(false);
   
   // Check if Cloudinary is configured
-  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   
   // If no cloud name or previous error, use direct Cloudinary fallback
   if (!cloudName || !useCloudinary || imageError) {

@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Stethoscope, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 import CloudinaryLogo from './CloudinaryLogo';
@@ -65,22 +67,22 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Navegación</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-background/80 hover:text-background transition-colors">
+                <Link href="/" className="text-background/80 hover:text-background transition-colors">
                   {t('nav.home')}
                 </Link>
               </li>
               <li>
-                <Link to="/sobre-mi" className="text-background/80 hover:text-background transition-colors">
+                <Link href="/sobre-mi" className="text-background/80 hover:text-background transition-colors">
                   {t('nav.about')}
                 </Link>
               </li>
               <li>
-                <Link to="/servicios" className="text-background/80 hover:text-background transition-colors">
+                <Link href="/servicios" className="text-background/80 hover:text-background transition-colors">
                   {t('nav.services')}
                 </Link>
               </li>
               <li>
-                <Link to="/contacto" className="text-background/80 hover:text-background transition-colors">
+                <Link href="/contacto" className="text-background/80 hover:text-background transition-colors">
                   {t('nav.contact')}
                 </Link>
               </li>

@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -11,13 +13,14 @@ import {
   scaleIn,
   viewportConfig 
 } from '@/lib/animations';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: "Síntomas de Alerta Urológica - Cuándo Consultar Inmediatamente",
-  description: "Reconoce los síntomas urológicos de emergencia: sangre en orina, dolor testicular, retención urinaria. Una respuesta rápida puede salvar tu riñón, vejiga o testículo.",
-  keywords: "sangre en orina, dolor testicular agudo, retención urinaria, emergencia urológica panamá, síntomas alarma urología, cuándo consultar urólogo urgente",
-};
+// Metadata cannot be exported from client components in Next.js
+// export const metadata: Metadata = {
+//   title: "Síntomas de Alerta Urológica - Cuándo Consultar Inmediatamente",
+//   description: "Reconoce los síntomas urológicos de emergencia: sangre en orina, dolor testicular, retención urinaria. Una respuesta rápida puede salvar tu riñón, vejiga o testículo.",
+//   keywords: "sangre en orina, dolor testicular agudo, retención urinaria, emergencia urológica panamá, síntomas alarma urología, cuándo consultar urólogo urgente",
+// };
 
 const SintomasAlerta = () => {
   const emergencySymptoms = [

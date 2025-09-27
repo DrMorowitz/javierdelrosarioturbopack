@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 import Header from '@/components/Header';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Activity, Zap, Target, ScanLine, DollarSign, Shield, Clock } from 'lucide-react';
 
 const ServicesPage = () => {
@@ -204,7 +206,7 @@ const ServicesPage = () => {
                       <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                         {service.description}
                       </p>
-                      <Link to="/contacto">
+                      <Link href="/contacto">
                         <Button className="btn-primary">
                           {currentContent.cta}
                         </Button>
@@ -320,12 +322,12 @@ const ServicesPage = () => {
               ¿Tienes alguna pregunta sobre nuestros servicios?
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contacto">
+              <Link href="/contacto">
                 <Button className="btn-primary">
                   Contactar Ahora
                 </Button>
               </Link>
-              <Link to="/sobre-mi">
+              <Link href="/sobre-mi">
                 <Button variant="outline" className="btn-secondary">
                   Conoce al Dr. del Rosario
                 </Button>

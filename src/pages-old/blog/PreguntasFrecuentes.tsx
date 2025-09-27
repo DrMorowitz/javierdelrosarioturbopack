@@ -1,6 +1,8 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, HelpCircle, ChevronDown, ChevronUp, Calendar, User, DollarSign, Clock, Shield } from 'lucide-react';
@@ -350,9 +352,9 @@ const PreguntasFrecuentes = () => {
         >
           <div className="section-container">
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-primary">Inicio</Link>
+              <Link href="/" className="hover:text-primary">Inicio</Link>
               <span>/</span>
-              <Link to="/blog" className="hover:text-primary">Blog</Link>
+              <Link href="/blog" className="hover:text-primary">Blog</Link>
               <span>/</span>
               <span className="text-foreground">Preguntas Frecuentes</span>
             </nav>
@@ -375,7 +377,7 @@ const PreguntasFrecuentes = () => {
                 transition={{ delay: 0.1 }}
               >
                 <Button variant="ghost" size="sm" asChild>
-                  <Link to="/blog" className="gap-2">
+                  <Link href="/blog" className="gap-2">
                     <ArrowLeft className="w-4 h-4" />
                     Volver al Blog
                   </Link>
@@ -533,7 +535,7 @@ const PreguntasFrecuentes = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <Link to="/contacto">
+                  <Link href="/contacto">
                     Agendar Consulta
                   </Link>
                 </Button>
@@ -581,7 +583,7 @@ const PreguntasFrecuentes = () => {
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <Link to={resource.route} className="block">
+                  <Link href={resource.route} className="block">
                     <div className={`${resource.color} h-32 rounded-lg mb-4 flex items-center justify-center`}>
                       <span className="text-white font-semibold">{resource.title}</span>
                     </div>
