@@ -6,6 +6,8 @@ export const useMobileDetection = () => {
 
   useEffect(() => {
     const checkMobile = () => {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+      
       const userAgent = navigator.userAgent;
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
       const isSmallScreen = window.innerWidth <= 768;
@@ -14,6 +16,8 @@ export const useMobileDetection = () => {
     };
 
     const checkLowPowerMode = () => {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+      
       // Check for reduced motion preference or low-end device indicators
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const lowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
