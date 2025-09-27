@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import CloudinaryLogo from './CloudinaryLogo';
@@ -14,12 +17,12 @@ import {
 } from '@/lib/animations';
 
 const Header = () => {
-  const location = useLocation();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isScrolled } = useScrollPosition(50);
 
   const isActiveRoute = (path: string) => {
-    return location.pathname === path;
+    return pathname === path;
   };
 
 
@@ -73,7 +76,7 @@ const Header = () => {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <Link to="/" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <picture>
                 {/* Desktop */}
                 <source
@@ -104,7 +107,7 @@ const Header = () => {
           {/* Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             <Link
-              to="/"
+              href="/"
               className={`font-medium transition-colors hover:text-primary ${
                 isActiveRoute('/') ? 'text-primary' : 'text-muted-foreground'
               }`}
@@ -112,7 +115,7 @@ const Header = () => {
               Inicio
             </Link>
             <Link
-              to="/sobre-mi"
+              href="/sobre-mi"
               className={`font-medium transition-colors hover:text-primary ${
                 isActiveRoute('/sobre-mi') ? 'text-primary' : 'text-muted-foreground'
               }`}
@@ -120,7 +123,7 @@ const Header = () => {
               Sobre Mí
             </Link>
             <Link
-              to="/servicios"
+              href="/servicios"
               className={`font-medium transition-colors hover:text-primary ${
                 isActiveRoute('/servicios') ? 'text-primary' : 'text-muted-foreground'
               }`}
@@ -128,7 +131,7 @@ const Header = () => {
               Servicios
             </Link>
             <Link
-              to="/blog"
+              href="/blog"
               className={`font-medium transition-colors hover:text-primary ${
                 isActiveRoute('/blog') ? 'text-primary' : 'text-muted-foreground'
               }`}
@@ -136,7 +139,7 @@ const Header = () => {
               Blog
             </Link>
             <Link
-              to="/contacto"
+              href="/contacto"
               className={`font-medium transition-colors hover:text-primary ${
                 isActiveRoute('/contacto') ? 'text-primary' : 'text-muted-foreground'
               }`}

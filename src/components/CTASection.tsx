@@ -1,8 +1,10 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { 
   Calendar, 
   Star,
